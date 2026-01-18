@@ -54,12 +54,21 @@ if __name__ == "__main__":
     print("Get predict result.")
     for image_id in tqdm(image_ids):
         if dataname == 'VOC-FOG':
-            image_path  = os.path.join(VOCdevkit_path, "VOC2007/FOG/"+image_id+".jpg")
+            # If image_id already has an extension, don't add .jpg
+            if image_id.lower().endswith(('.jpg', '.png')):
+                image_path = os.path.join(VOCdevkit_path, "VOC2007/FOG/" + image_id)
+            else:
+                image_path = os.path.join(VOCdevkit_path, "VOC2007/FOG/" + image_id + ".jpg")
         else:
-            image_path  = os.path.join(VOCdevkit_path, "VOC2007/JPEGImages/"+image_id+".jpg")
-        image       = Image.open(image_path)
+            if image_id.lower().endswith(('.jpg', '.png')):
+                image_path = os.path.join(VOCdevkit_path, "VOC2007/JPEGImages/" + image_id)
+            else:
+                image_path = os.path.join(VOCdevkit_path, "VOC2007/JPEGImages/" + image_id + ".jpg")
+        image = Image.open(image_path)
         if map_vis:
-            image.save(os.path.join(map_out_path, "images-optional/" + image_id + ".jpg"))
+            # Save with the same extension as the input image
+            ext = os.path.splitext(image_id)[1] or '.jpg'
+            image.save(os.path.join(map_out_path, "images-optional/" + os.path.splitext(image_id)[0] + ext))
         yolo.get_map_txt(image_id, image, class_names, map_out_path)
     print("Get predict result done.")
     print("Get ground truth result.")
