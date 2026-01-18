@@ -8,9 +8,6 @@ from yolo import YOLO
 # os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 
 if __name__ == "__main__":
-    print("VOCdevkit_path:", VOCdevkit_path)
-    print("Full test.txt path:", os.path.join(VOCdevkit_path, "VOC2007/ImageSets/Main/test.txt"))
-    print("Exists:", os.path.exists(os.path.join(VOCdevkit_path, "VOC2007/ImageSets/Main/test.txt")))
 
     dataname        = 'fdd'
     classes_path    = r'E:\Graduate_Student\paper\mine\sci2\ICME\final\RDFNet\Code\model_data\rtts_classes.txt'
