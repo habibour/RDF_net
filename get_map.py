@@ -73,8 +73,10 @@ if __name__ == "__main__":
     print("Get predict result done.")
     print("Get ground truth result.")
     for image_id in tqdm(image_ids):
-        with open(os.path.join(map_out_path, "ground-truth/"+image_id+".txt"), "w") as new_f:
-            root = ET.parse(os.path.join(VOCdevkit_path, "VOC2007/Annotations/"+image_id+".xml")).getroot()
+        # Remove extension for annotation and ground-truth file names
+        base_id = os.path.splitext(image_id)[0]
+        with open(os.path.join(map_out_path, "ground-truth/" + base_id + ".txt"), "w") as new_f:
+            root = ET.parse(os.path.join(VOCdevkit_path, "VOC2007/Annotations/" + base_id + ".xml")).getroot()
             for obj in root.findall('object'):
                 difficult_flag = False
                 if obj.find('difficult')!=None:
