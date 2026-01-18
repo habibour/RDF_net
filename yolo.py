@@ -120,11 +120,11 @@ class YOLO(object):
         return image
     
     def get_map_txt(self, image_id, image, class_names, map_out_path):
-        f = open(os.path.join(map_out_path, "detection-results/"+image_id+".txt"), "w", encoding='utf-8') 
+        file_path = os.path.join(map_out_path, "detection-results/" + image_id + ".txt")
         image_shape = np.array(np.shape(image)[0:2])
-        image       = cvtColor(image)
-        image_data  = resize_image(image, (self.input_shape[1], self.input_shape[0]), self.letterbox_image)
-        image_data  = np.expand_dims(np.transpose(preprocess_input(np.array(image_data, dtype='float32')), (2, 0, 1)), 0)
+        image = cvtColor(image)
+        image_data = resize_image(image, (self.input_shape[1], self.input_shape[0]), self.letterbox_image)
+        image_data = np.expand_dims(np.transpose(preprocess_input(np.array(image_data, dtype='float32')), (2, 0, 1)), 0)
 
         with torch.no_grad():
             images = torch.from_numpy(image_data)
@@ -132,26 +132,24 @@ class YOLO(object):
                 images = images.cuda()
             outputs = self.net(images)
             outputs = self.bbox_util.decode_box(outputs)
-            results = self.bbox_util.non_max_suppression(torch.cat(outputs, 1), self.num_classes, self.input_shape, 
-                        image_shape, self.letterbox_image, conf_thres = self.confidence, nms_thres = self.nms_iou)
-                                                    
-            if results[0] is None: 
-                return 
+            results = self.bbox_util.non_max_suppression(torch.cat(outputs, 1), self.num_classes, self.input_shape,
+                        image_shape, self.letterbox_image, conf_thres=self.confidence, nms_thres=self.nms_iou)
 
-            top_label   = np.array(results[0][:, 6], dtype = 'int32')
-            top_conf    = results[0][:, 4] * results[0][:, 5]
-            top_boxes   = results[0][:, :4]
+            with open(file_path, "w", encoding='utf-8') as f:
+                if results[0] is not None:
+                    top_label = np.array(results[0][:, 6], dtype='int32')
+                    top_conf = results[0][:, 4] * results[0][:, 5]
+                    top_boxes = results[0][:, :4]
 
-        for i, c in list(enumerate(top_label)):
-            predicted_class = self.class_names[int(c)]
-            box             = top_boxes[i]
-            score           = str(top_conf[i])
+                    for i, c in list(enumerate(top_label)):
+                        predicted_class = self.class_names[int(c)]
+                        box = top_boxes[i]
+                        score = str(top_conf[i])
 
-            top, left, bottom, right = box
-            if predicted_class not in class_names:
-                continue
+                        top, left, bottom, right = box
+                        if predicted_class not in class_names:
+                            continue
 
-            f.write("%s %s %s %s %s %s\n" % (predicted_class, score[:6], str(int(left)), str(int(top)), str(int(right)),str(int(bottom))))
-
-        f.close()
-        return 
+                        f.write("%s %s %s %s %s %s\n" % (predicted_class, score[:6], str(int(left)), str(int(top)), str(int(right)), str(int(bottom))))
+                # If results[0] is None, file is left empty (created)
+        return
