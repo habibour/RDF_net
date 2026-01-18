@@ -28,8 +28,14 @@ if __name__ == "__main__":
         print("Exists:", os.path.exists(os.path.join(VOCdevkit_path, "VOC2007/ImageSets/Main/test.txt")))
     elif dataname == 'fdd': 
         VOCdevkit_path  = '' # path of the fdd dataset
+        print("VOCdevkit_path:", VOCdevkit_path)
+        print("Full test.txt path:", os.path.join(VOCdevkit_path, "VOC2007/ImageSets/Main/test.txt"))
+        print("Exists:", os.path.exists(os.path.join(VOCdevkit_path, "VOC2007/ImageSets/Main/test.txt")))
     elif dataname == 'VOC-FOG':
         VOCdevkit_path  = '' # path of the voc-fog dataset
+        print("VOCdevkit_path:", VOCdevkit_path)
+        print("Full test.txt path:", os.path.join(VOCdevkit_path, "VOC2007/ImageSets/Main/test.txt"))
+        print("Exists:", os.path.exists(os.path.join(VOCdevkit_path, "VOC2007/ImageSets/Main/test.txt")))
 
     map_out_path    = f'map_out-{dataname}'
 
