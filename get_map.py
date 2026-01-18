@@ -23,6 +23,9 @@ if __name__ == "__main__":
 
     if dataname == 'rtts':
         VOCdevkit_path  = '/content/drive/MyDrive/dataset/RTTS' # path of the rtts dataset
+        print("VOCdevkit_path:", VOCdevkit_path)
+        print("Full test.txt path:", os.path.join(VOCdevkit_path, "VOC2007/ImageSets/Main/test.txt"))
+        print("Exists:", os.path.exists(os.path.join(VOCdevkit_path, "VOC2007/ImageSets/Main/test.txt")))
     elif dataname == 'fdd': 
         VOCdevkit_path  = '' # path of the fdd dataset
     elif dataname == 'VOC-FOG':
