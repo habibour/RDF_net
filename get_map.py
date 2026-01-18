@@ -9,7 +9,7 @@ from yolo import YOLO
 
 if __name__ == "__main__":
 
-    dataname        = 'fdd'
+    dataname        = 'rtts'
     classes_path    = r'E:\Graduate_Student\paper\mine\sci2\ICME\final\RDFNet\Code\model_data\rtts_classes.txt'
     model_path      = 'model_data/RDFNet.pth'
     MINOVERLAP      = 0.5
