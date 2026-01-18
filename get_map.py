@@ -72,6 +72,15 @@ if __name__ == "__main__":
         yolo.get_map_txt(image_id, image, class_names, map_out_path)
     print("Get predict result done.")
     print("Get ground truth result.")
+    # Ensure detection-results files exist for every image
+    detection_results_dir = os.path.join(map_out_path, "detection-results")
+    if not os.path.exists(detection_results_dir):
+        os.makedirs(detection_results_dir)
+    for image_id in image_ids:
+        det_file = os.path.join(detection_results_dir, image_id + ".txt")
+        if not os.path.exists(det_file):
+            open(det_file, "w").close()
+
     for image_id in tqdm(image_ids):
         # Remove extension for annotation and ground-truth file names
         base_id = os.path.splitext(image_id)[0]
