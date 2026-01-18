@@ -69,7 +69,9 @@ if __name__ == "__main__":
             # Save with the same extension as the input image
             ext = os.path.splitext(image_id)[1] or '.jpg'
             image.save(os.path.join(map_out_path, "images-optional/" + os.path.splitext(image_id)[0] + ext))
-        yolo.get_map_txt(image_id, image, class_names, map_out_path)
+        # Use base_id for detection-results file naming
+        base_id = os.path.splitext(image_id)[0]
+        yolo.get_map_txt(base_id, image, class_names, map_out_path)
     print("Get predict result done.")
     print("Get ground truth result.")
     # Ensure detection-results files exist for every image
@@ -77,7 +79,8 @@ if __name__ == "__main__":
     if not os.path.exists(detection_results_dir):
         os.makedirs(detection_results_dir)
     for image_id in image_ids:
-        det_file = os.path.join(detection_results_dir, image_id + ".txt")
+        base_id = os.path.splitext(image_id)[0]
+        det_file = os.path.join(detection_results_dir, base_id + ".txt")
         if not os.path.exists(det_file):
             open(det_file, "w").close()
 
