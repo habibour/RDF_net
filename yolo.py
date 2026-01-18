@@ -12,7 +12,7 @@ class YOLO(object):
     _defaults = {
         "model_path"        : 'model_data/RDFNet.pth',
         "classes_path"      : 'model_data/rtts_classes.txt',
-        "anchors_path"      : r'E:\Graduate_Student\paper\mine\sci2\ICME\final\RDFNet\Code\model_data/yolo_anchors.txt',
+        "anchors_path"      : 'model_data/yolo_anchors.txt',
         "anchors_mask"      : [[6, 7, 8], [3, 4, 5], [0, 1, 2]],
         "input_shape"       : [640, 640],
         "confidence"        : 0.5,
