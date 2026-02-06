@@ -10,14 +10,14 @@ from yolo import YOLO
 # os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 
 def read_file_with_retry(file_path, max_retries=10, delay=3):
-    """Read a file with retry logic to handle I/O errors (common with Google Drive)."""
+    """Read XML file with retry logic for Google Drive I/O errors."""
     for attempt in range(max_retries):
         try:
             return ET.parse(file_path).getroot()
         except (OSError, IOError) as e:
             if attempt < max_retries - 1:
                 print(f"\nI/O error reading {file_path}, retrying ({attempt + 1}/{max_retries})...")
-                time.sleep(delay * (attempt + 1))  # Exponential backoff
+                time.sleep(delay * (attempt + 1))
             else:
                 print(f"\nFailed to read {file_path} after {max_retries} attempts: {e}")
                 return None
@@ -27,16 +27,16 @@ def read_file_with_retry(file_path, max_retries=10, delay=3):
     return None
 
 def open_image_with_retry(image_path, max_retries=10, delay=3):
-    """Open an image with retry logic to handle I/O errors."""
+    """Open image with retry logic for Google Drive I/O errors."""
     for attempt in range(max_retries):
         try:
             img = Image.open(image_path)
-            img.load()  # Force load the image data
+            img.load()
             return img
         except (OSError, IOError) as e:
             if attempt < max_retries - 1:
                 print(f"\nI/O error reading {image_path}, retrying ({attempt + 1}/{max_retries})...")
-                time.sleep(delay * (attempt + 1))  # Exponential backoff
+                time.sleep(delay * (attempt + 1))
             else:
                 print(f"\nFailed to read {image_path} after {max_retries} attempts: {e}")
                 return None
@@ -54,6 +54,48 @@ def load_checkpoint(checkpoint_path):
             data = json.load(f)
             return data.get('phase', 'predict'), set(data.get('completed', []))
     return 'predict', set()
+
+def find_dataset_path(dataname):
+    """Auto-detect dataset path and structure."""
+    if dataname == 'rtts':
+        possible_paths = [
+            # Colab paths
+            ('/content/RTTS', 'VOC2007'),           # RTTS/VOC2007/...
+            ('/content/RTTS', ''),                   # RTTS/Annotations/... (flat)
+            ('/content/drive/MyDrive/dataset/RTTS', 'VOC2007'),
+            ('/content/drive/MyDrive/dataset/RTTS', ''),
+            # Local Mac paths
+            ('/Users/habibourakash/Downloads/RTTS', 'VOC2007'),
+            ('/Users/habibourakash/Downloads/RTTS', ''),
+            ('/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/RTTS', ''),
+        ]
+    elif dataname == 'fdd':
+        possible_paths = [
+            ('/content/FDD', 'VOC2007'),
+            ('/content/FDD', ''),
+            ('/content/drive/MyDrive/dataset/FDD', 'VOC2007'),
+            ('/content/drive/MyDrive/dataset/FDD', ''),
+        ]
+    elif dataname == 'VOC-FOG':
+        possible_paths = [
+            ('/content/VOC-FOG', 'VOC2007'),
+            ('/content/VOC-FOG', ''),
+            ('/content/drive/MyDrive/dataset/VOC-FOG', 'VOC2007'),
+            ('/content/drive/MyDrive/dataset/VOC-FOG', ''),
+        ]
+    else:
+        possible_paths = []
+    
+    for base_path, sub_folder in possible_paths:
+        if sub_folder:
+            test_path = os.path.join(base_path, sub_folder, "ImageSets/Main/test.txt")
+        else:
+            test_path = os.path.join(base_path, "ImageSets/Main/test.txt")
+        
+        if os.path.exists(test_path):
+            return base_path, sub_folder
+    
+    return None, None
 
 if __name__ == "__main__":
 
@@ -73,52 +115,33 @@ if __name__ == "__main__":
     nms_iou         = 0.5
     score_threhold  = 0.5
     map_vis         = False
-    
-    # Resume from checkpoint if available
     resume_from_checkpoint = True
 
-    if dataname == 'rtts':
-        # Check for local machine paths first, then Colab paths
-        possible_paths = [
-            '/Users/habibourakash/Downloads/RTTS',  # Local Mac
-            '/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/dataset/RTTS',
-            './dataset/RTTS',  # Relative path
-            '/content/RTTS',  # Colab local
-            '/content/drive/MyDrive/dataset/RTTS',  # Colab Drive
-        ]
-        VOCdevkit_path = None
-        for path in possible_paths:
-            if os.path.exists(path):
-                VOCdevkit_path = path
-                break
-        if VOCdevkit_path is None:
-            print("ERROR: RTTS dataset not found! Please set VOCdevkit_path manually.")
-            print("Searched paths:", possible_paths)
-            exit(1)
-        print("VOCdevkit_path:", VOCdevkit_path)
-        print("Full test.txt path:", os.path.join(VOCdevkit_path, "VOC2007/ImageSets/Main/test.txt"))
-        print("Exists:", os.path.exists(os.path.join(VOCdevkit_path, "VOC2007/ImageSets/Main/test.txt")))
-    elif dataname == 'fdd': 
-        # Use local path (copy from Drive first to avoid I/O errors)
-        VOCdevkit_path  = '/content/FDD'
-        if not os.path.exists(VOCdevkit_path):
-            VOCdevkit_path = '/content/drive/MyDrive/dataset/FDD'
-        print("VOCdevkit_path:", VOCdevkit_path)
-        print("Full test.txt path:", os.path.join(VOCdevkit_path, "VOC2007/ImageSets/Main/test.txt"))
-        print("Exists:", os.path.exists(os.path.join(VOCdevkit_path, "VOC2007/ImageSets/Main/test.txt")))
-    elif dataname == 'VOC-FOG':
-        # Use local path (copy from Drive first to avoid I/O errors)
-        VOCdevkit_path  = '/content/VOC-FOG'
-        if not os.path.exists(VOCdevkit_path):
-            VOCdevkit_path = '/content/drive/MyDrive/dataset/VOC-FOG'
-        print("VOCdevkit_path:", VOCdevkit_path)
-        print("Full test.txt path:", os.path.join(VOCdevkit_path, "VOC2007/ImageSets/Main/test.txt"))
-        print("Exists:", os.path.exists(os.path.join(VOCdevkit_path, "VOC2007/ImageSets/Main/test.txt")))
+    # Auto-detect dataset path and structure
+    VOCdevkit_path, sub_folder = find_dataset_path(dataname)
+    
+    if VOCdevkit_path is None:
+        print("ERROR: Dataset not found!")
+        print("Please ensure your dataset is in one of these locations:")
+        print("  - /content/RTTS/ (Colab)")
+        print("  - /content/drive/MyDrive/dataset/RTTS/ (Google Drive)")
+        exit(1)
+    
+    # Build paths based on detected structure
+    if sub_folder:
+        data_root = os.path.join(VOCdevkit_path, sub_folder)
+    else:
+        data_root = VOCdevkit_path
+    
+    print(f"Dataset path: {VOCdevkit_path}")
+    print(f"Data root: {data_root}")
+    print(f"Test file: {os.path.join(data_root, 'ImageSets/Main/test.txt')}")
 
     map_out_path    = f'map_out-{dataname}'
     checkpoint_path = f'{map_out_path}/checkpoint.json'
 
-    image_ids = open(os.path.join(VOCdevkit_path, "VOC2007/ImageSets/Main/test.txt")).read().strip().split()
+    image_ids = open(os.path.join(data_root, "ImageSets/Main/test.txt")).read().strip().split()
+    print(f"Total images: {len(image_ids)}")
 
     if not os.path.exists(map_out_path):
         os.makedirs(map_out_path)
@@ -142,12 +165,11 @@ if __name__ == "__main__":
     # ============================================================
     if current_phase == 'predict':
         print("Load model.")
-        yolo = YOLO(model_path = model_path, confidence = confidence, nms_iou = nms_iou)
+        yolo = YOLO(model_path=model_path, confidence=confidence, nms_iou=nms_iou)
         print("Load model done.")
         print("Get predict result.")
         
         skipped_images = []
-        # Filter out already completed images
         remaining_ids = [img_id for img_id in image_ids if os.path.splitext(img_id)[0] not in completed_ids]
         
         if len(remaining_ids) < len(image_ids):
@@ -157,20 +179,18 @@ if __name__ == "__main__":
             base_id = os.path.splitext(image_id)[0]
             
             if dataname == 'VOC-FOG':
-                if image_id.lower().endswith(('.jpg', '.png')):
-                    image_path = os.path.join(VOCdevkit_path, "VOC2007/FOG/" + image_id)
-                else:
-                    image_path = os.path.join(VOCdevkit_path, "VOC2007/FOG/" + image_id + ".jpg")
+                img_folder = "FOG"
             else:
-                if image_id.lower().endswith(('.jpg', '.png')):
-                    image_path = os.path.join(VOCdevkit_path, "VOC2007/JPEGImages/" + image_id)
-                else:
-                    image_path = os.path.join(VOCdevkit_path, "VOC2007/JPEGImages/" + image_id + ".jpg")
+                img_folder = "JPEGImages"
+            
+            if image_id.lower().endswith(('.jpg', '.png')):
+                image_path = os.path.join(data_root, img_folder, image_id)
+            else:
+                image_path = os.path.join(data_root, img_folder, image_id + ".jpg")
             
             image = open_image_with_retry(image_path)
             if image is None:
                 skipped_images.append(image_id)
-                # Create empty detection file
                 det_file = os.path.join(map_out_path, "detection-results", base_id + ".txt")
                 open(det_file, "w").close()
                 completed_ids.add(base_id)
@@ -184,7 +204,6 @@ if __name__ == "__main__":
             yolo.get_map_txt(base_id, image, class_names, map_out_path)
             completed_ids.add(base_id)
             
-            # Save checkpoint every 100 images
             if len(completed_ids) % 100 == 0:
                 save_checkpoint(checkpoint_path, 'predict', completed_ids)
         
@@ -192,7 +211,6 @@ if __name__ == "__main__":
             print(f"\nWarning: Skipped {len(skipped_images)} images due to I/O errors")
         print("Get predict result done.")
         
-        # Move to ground truth phase
         current_phase = 'ground_truth'
         completed_ids = set()
         save_checkpoint(checkpoint_path, current_phase, completed_ids)
@@ -203,7 +221,6 @@ if __name__ == "__main__":
     if current_phase == 'ground_truth':
         print("Get ground truth result.")
         
-        # Ensure detection-results files exist for every image
         detection_results_dir = os.path.join(map_out_path, "detection-results")
         for image_id in image_ids:
             base_id = os.path.splitext(image_id)[0]
@@ -212,7 +229,6 @@ if __name__ == "__main__":
                 open(det_file, "w").close()
 
         skipped_annotations = []
-        # Filter out already completed annotations
         remaining_ids = [img_id for img_id in image_ids if os.path.splitext(img_id)[0] not in completed_ids]
         
         if len(remaining_ids) < len(image_ids):
@@ -220,14 +236,12 @@ if __name__ == "__main__":
         
         for image_id in tqdm(remaining_ids, desc="Ground Truth"):
             base_id = os.path.splitext(image_id)[0]
-            annotation_path = os.path.join(VOCdevkit_path, "VOC2007/Annotations/" + base_id + ".xml")
+            annotation_path = os.path.join(data_root, "Annotations", base_id + ".xml")
             gt_file_path = os.path.join(map_out_path, "ground-truth/" + base_id + ".txt")
             
-            # Use retry logic to read XML annotation
             root = read_file_with_retry(annotation_path)
             if root is None:
                 skipped_annotations.append(base_id)
-                # Create empty ground-truth file
                 open(gt_file_path, "w").close()
                 completed_ids.add(base_id)
                 save_checkpoint(checkpoint_path, 'ground_truth', completed_ids)
@@ -255,7 +269,6 @@ if __name__ == "__main__":
             
             completed_ids.add(base_id)
             
-            # Save checkpoint every 100 annotations
             if len(completed_ids) % 100 == 0:
                 save_checkpoint(checkpoint_path, 'ground_truth', completed_ids)
         
@@ -263,7 +276,6 @@ if __name__ == "__main__":
             print(f"\nWarning: Skipped {len(skipped_annotations)} annotations due to I/O errors")
         print("Get ground truth result done.")
         
-        # Move to map calculation phase
         current_phase = 'calculate_map'
         save_checkpoint(checkpoint_path, current_phase, set())
 
@@ -275,7 +287,6 @@ if __name__ == "__main__":
         get_map(MINOVERLAP, True, score_threhold=score_threhold, path=map_out_path)
         print("Get map done.")
         
-        # Clean up checkpoint file after successful completion
         if os.path.exists(checkpoint_path):
             os.remove(checkpoint_path)
         print("\n" + "="*60)
