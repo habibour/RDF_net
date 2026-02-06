@@ -6,11 +6,26 @@ from utils.utils import get_classes
 
 annotation_mode     = 2
 classes_path        = 'model_data/rtts_classes.txt'
-trainval_percent    = 1
-train_percent       = 1
-VOCdevkit_path  = '/content/drive/MyDrive/dataset/RTTS'
+trainval_percent    = 0.9  # 90% for trainval, 10% for test
+train_percent       = 0.9  # 90% of trainval for train, 10% for val
 
-VOCdevkit_sets  = [('2007', 'train'), ('2007', 'test')]
+# Auto-detect dataset path
+import os as _os
+_possible_paths = [
+    '/content/drive/MyDrive/dataset/VOC-FOG',  # Colab Drive
+    '/content/VOC-FOG',  # Colab local
+    '/content/drive/MyDrive/dataset/RTTS',
+    '/content/RTTS',
+]
+VOCdevkit_path = None
+for _p in _possible_paths:
+    if _os.path.exists(_p):
+        VOCdevkit_path = _p
+        break
+if VOCdevkit_path is None:
+    VOCdevkit_path = '/content/drive/MyDrive/dataset/VOC-FOG'  # Default
+
+VOCdevkit_sets  = [('2007', 'train'), ('2007', 'val')]
 classes, _      = get_classes(classes_path)
 
 photo_nums  = np.zeros(len(VOCdevkit_sets))

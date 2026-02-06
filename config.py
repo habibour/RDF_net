@@ -2,11 +2,13 @@ Cuda            = True
 seed            = 114514
 distributed     = False
 sync_bn         = False
-fp16            = False
+fp16            = True  # Enable mixed precision for faster training
 classes_path    = 'model_data/rtts_classes.txt'
 anchors_path    = 'model_data/yolo_anchors.txt'
 anchors_mask    = [[6, 7, 8], [3, 4, 5], [0, 1, 2]]
-model_path      = 'model_data/RDFNet.pth'
+# For training from scratch, use pretrained backbone:
+model_path      = 'model_data/yolov7_tiny_weights.pth'  # Pretrained backbone
+# For fine-tuning, use: model_path = 'model_data/RDFNet.pth'
 input_shape     = [640, 640]
 pretrained      = False
 Init_Epoch          = 0
