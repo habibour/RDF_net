@@ -86,7 +86,9 @@ class Backbone(nn.Module):
 
     def forward(self, x):
         if self.training:
-            x, clear_x = x.split((8, 8), dim=0)  
+            # Split hazy and clear images (each half of the batch)
+            batch_size = x.shape[0] // 2
+            x, clear_x = x.split((batch_size, batch_size), dim=0)  
         x = self.stem(x)
         x = self.dark2(x)
         f1 = x
