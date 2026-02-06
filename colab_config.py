@@ -1,14 +1,18 @@
 # ============================================================
-# RDFNet Colab Configuration
+# RDFNet Colab Configuration - 12K Dataset
 # ============================================================
 # This config is designed for Google Colab training with resume support
 
 import os
 
-# ============= DATASET PATHS (COLAB) =============
-# Training data paths
-TRAIN_FOG_PATH = '/content/drive/MyDrive/dataset/training/VOC2007 2/FOG'
-TRAIN_ANN_PATH = '/content/drive/MyDrive/dataset/training/VOC2007 2/Annotations'
+# ============= DATASET PATHS (COLAB) - 12K Dataset =============
+# VOC2007 FOG paths
+VOC2007_FOG_PATH = '/content/drive/MyDrive/VOC_FOG_12K/VOC2007_FOG'
+VOC2007_ANN_PATH = '/content/drive/MyDrive/VOC_FOG_12K/VOC2007_Annotations'
+
+# VOC2012 FOG paths  
+VOC2012_FOG_PATH = '/content/drive/MyDrive/VOC_FOG_12K/VOC2012_FOG'
+VOC2012_ANN_PATH = '/content/drive/MyDrive/VOC_FOG_12K/VOC2012_Annotations'
 
 # Testing data paths (RTTS)
 TEST_IMG_PATH = '/content/drive/MyDrive/dataset/RTTS/VOC2007/JPEGImages'
