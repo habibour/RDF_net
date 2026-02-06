@@ -108,6 +108,89 @@ def backup_checkpoint(local_path):
     print(f"💾 Backed up: {filename}")
 
 
+def generate_annotations():
+    """Generate training annotation files from VOC datasets"""
+    import xml.etree.ElementTree as ET
+    
+    print("\n📝 Generating annotation files...")
+    
+    train_lines = []
+    val_lines = []
+    
+    datasets = [
+        (VOC2007_FOG, VOC2007_ANN, 'VOC2007'),
+        (VOC2012_FOG, VOC2012_ANN, 'VOC2012'),
+    ]
+    
+    for fog_dir, ann_dir, name in datasets:
+        if not os.path.exists(fog_dir) or not os.path.exists(ann_dir):
+            print(f"⚠️ Skipping {name}: directory not found")
+            continue
+        
+        # Get all images
+        images = [f for f in os.listdir(fog_dir) if f.endswith(('.jpg', '.png', '.jpeg'))]
+        print(f"  {name}: {len(images)} images")
+        
+        for img_name in images:
+            img_path = os.path.join(fog_dir, img_name)
+            xml_name = os.path.splitext(img_name)[0] + '.xml'
+            xml_path = os.path.join(ann_dir, xml_name)
+            
+            if not os.path.exists(xml_path):
+                continue
+            
+            # Parse XML
+            try:
+                tree = ET.parse(xml_path)
+                root = tree.getroot()
+                
+                boxes = []
+                for obj in root.iter('object'):
+                    difficult = 0
+                    if obj.find('difficult') is not None:
+                        difficult = int(obj.find('difficult').text)
+                    
+                    cls_name = obj.find('name').text
+                    if cls_name not in VOC_CLASSES:
+                        continue
+                    
+                    cls_id = VOC_CLASSES.index(cls_name)
+                    bbox = obj.find('bndbox')
+                    box = [
+                        int(float(bbox.find('xmin').text)),
+                        int(float(bbox.find('ymin').text)),
+                        int(float(bbox.find('xmax').text)),
+                        int(float(bbox.find('ymax').text)),
+                        cls_id
+                    ]
+                    boxes.append(','.join(map(str, box)))
+                
+                if boxes:
+                    line = img_path + ' ' + ' '.join(boxes)
+                    train_lines.append(line)
+            except Exception as e:
+                continue
+    
+    # Split: 90% train, 10% val
+    import random
+    random.shuffle(train_lines)
+    split_idx = int(len(train_lines) * 0.9)
+    val_lines = train_lines[split_idx:]
+    train_lines = train_lines[:split_idx]
+    
+    # Write files
+    with open(train_annotation_path, 'w') as f:
+        f.write('\n'.join(train_lines))
+    
+    with open(val_annotation_path, 'w') as f:
+        f.write('\n'.join(val_lines))
+    
+    print(f"✅ Train annotations: {len(train_lines)}")
+    print(f"✅ Val annotations: {len(val_lines)}")
+    
+    return len(train_lines), len(val_lines)
+
+
 if __name__ == "__main__":
     
     seed_everything(seed)
@@ -140,6 +223,10 @@ if __name__ == "__main__":
     # Setup directories
     os.makedirs(save_dir, exist_ok=True)
     os.makedirs(CHECKPOINT_DIR, exist_ok=True)
+    
+    # Generate annotation files if they don't exist
+    if not os.path.exists(train_annotation_path) or not os.path.exists(val_annotation_path):
+        generate_annotations()
     
     # Check for resume
     resume_epoch = 0
