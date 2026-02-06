@@ -24,10 +24,10 @@ from utils.utils_fit import fit_one_epoch
 
 # ============= KAGGLE CONFIG =============
 # Dataset paths (read-only)
-VOC2007_FOG = '/kaggle/input/voc-fog-12k/VOC_FOG_12K_Upload/VOC2007_FOG'
-VOC2007_ANN = '/kaggle/input/voc-fog-12k/VOC_FOG_12K_Upload/VOC2007_Annotations'
-VOC2012_FOG = '/kaggle/input/voc-fog-12k/VOC_FOG_12K_Upload/VOC2012_FOG'
-VOC2012_ANN = '/kaggle/input/voc-fog-12k/VOC_FOG_12K_Upload/VOC2012_Annotations'
+VOC2007_FOG = '/kaggle/input/foggy-voc/VOC_FOG_12K_Upload/VOC_FOG_12K_Upload/VOC2007_FOG'
+VOC2007_ANN = '/kaggle/input/foggy-voc/VOC_FOG_12K_Upload/VOC_FOG_12K_Upload/VOC2007_Annotations'
+VOC2012_FOG = '/kaggle/input/foggy-voc/VOC_FOG_12K_Upload/VOC_FOG_12K_Upload/VOC2012_FOG'
+VOC2012_ANN = '/kaggle/input/foggy-voc/VOC_FOG_12K_Upload/VOC_FOG_12K_Upload/VOC2012_Annotations'
 
 # Output directory (writable)
 OUTPUT_DIR = '/kaggle/working'

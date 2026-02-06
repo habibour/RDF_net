@@ -7,8 +7,8 @@ from PIL import Image
 from tqdm import tqdm
 
 # ============= KAGGLE PATHS =============
-RTTS_IMAGES = '/kaggle/input/rtts/RTTS/JPEGImages'
-RTTS_ANNOTATIONS = '/kaggle/input/rtts/RTTS/Annotations'
+RTTS_IMAGES = '/kaggle/input/foggy-voc/RTTS/RTTS/JPEGImages'
+RTTS_ANNOTATIONS = '/kaggle/input/foggy-voc/RTTS/RTTS/Annotations'
 OUTPUT_DIR = '/kaggle/working'
 CHECKPOINT_DIR = os.path.join(OUTPUT_DIR, 'checkpoints')
 
