@@ -1,0 +1,451 @@
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005389.jpg 25,42,410,208,18
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008296.jpg 52,103,500,324,6
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005304.jpg 264,75,391,282,4 1,2,472,400,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/004087.jpg 1,29,412,375,6
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/006840.jpg 58,19,368,333,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008285.jpg 132,32,327,203,19 88,50,395,375,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/003188.jpg 54,125,320,375,1 257,4,435,375,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005680.jpg 121,65,372,318,18 476,244,500,299,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001110.jpg 19,73,264,305,7 254,66,498,326,7
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005385.jpg 46,208,101,334,4 153,5,500,336,14 74,33,321,283,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/003077.jpg 323,151,441,252,8 250,155,344,254,8 73,139,156,289,14 153,142,237,285,14 244,127,321,266,14 352,134,435,262,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/000306.jpg 114,36,182,86,9 237,46,302,87,9 303,42,380,87,9
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/006935.jpg 8,46,333,500,9
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/002519.jpg 55,2,476,375,13
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/004790.jpg 1,4,263,375,14 204,22,499,375,14 277,70,489,323,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/006382.jpg 3,62,295,331,12
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008024.jpg 1,71,494,362,0 219,105,298,265,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001247.jpg 237,109,459,167,3
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008359.jpg 353,43,477,184,6 21,36,364,343,6
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/000408.jpg 51,114,347,499,9
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/002559.jpg 103,64,453,293,6 1,115,48,183,8 156,1,284,107,15
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/006538.jpg 119,94,308,258,18
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/004085.jpg 58,145,228,217,11 387,102,500,321,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001484.jpg 1,1,243,125,3
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/003814.jpg 116,75,423,314,7
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001945.jpg 69,108,238,331,14 93,161,221,477,12
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/000802.jpg 1,145,58,266,14 2,192,93,291,1
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/007299.jpg 109,191,166,290,2
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/004015.jpg 73,23,302,375,11
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008706.jpg 224,162,284,258,9 270,171,309,243,9 290,164,333,237,9 316,163,348,237,9 179,164,224,247,9 142,188,188,273,9 31,139,73,181,6 1,136,34,172,6
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/004634.jpg 160,143,400,305,12
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/007746.jpg 242,58,500,375,14 55,27,330,375,14 125,246,144,272,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005985.jpg 239,1,354,258,15 55,70,231,410,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001801.jpg 310,194,404,291,13 176,175,291,324,13 118,174,160,235,13 323,156,389,235,14 194,143,257,280,14 125,151,157,214,14 1,163,60,219,6 319,174,435,229,6 1,206,43,365,6
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/003620.jpg 74,1,451,257,7
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/004200.jpg 18,53,151,252,9 160,53,266,246,9 258,31,373,251,9
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001920.jpg 33,28,337,321,14 322,4,456,114,19
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/000524.jpg 181,126,362,287,12 252,78,312,238,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/009852.jpg 153,121,482,375,7
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001755.jpg 61,17,500,333,7
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005223.jpg 79,62,500,375,16
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/006924.jpg 2,40,265,488,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/002411.jpg 129,163,300,259,6
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/006095.jpg 264,148,496,280,9 98,123,237,248,12 150,77,189,181,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008465.jpg 19,27,499,498,15
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008978.jpg 212,146,491,358,6
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008667.jpg 15,22,433,328,0
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/000915.jpg 26,256,274,375,10 206,71,416,375,14 94,103,284,264,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/004962.jpg 255,172,348,208,6
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001348.jpg 163,52,313,210,2
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/009331.jpg 1,1,58,193,12 57,22,125,256,14 100,168,217,293,11 260,195,360,266,11 331,196,412,281,11
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005101.jpg 1,2,374,500,8 162,224,349,368,7
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/004535.jpg 80,100,401,423,12 215,40,324,271,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/009173.jpg 167,1,375,128,19
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/009002.jpg 35,29,445,206,18
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005715.jpg 39,8,474,375,7
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/007129.jpg 82,94,245,397,11 187,9,422,397,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/000308.jpg 351,100,433,190,14 224,124,308,269,14 144,153,243,321,14 163,114,225,167,14 216,107,276,154,14 33,136,396,317,10
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/007191.jpg 93,308,436,374,10 68,170,81,199,4 260,257,290,353,4 299,322,316,375,4 274,315,292,375,4 45,191,153,279,10 89,192,150,286,8 12,197,85,289,8 4,220,35,349,8
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/000713.jpg 80,168,254,312,3 184,160,472,269,3
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/002468.jpg 259,33,410,166,2 45,172,178,330,2
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/003163.jpg 56,66,441,240,5
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/000929.jpg 1,65,500,375,10 261,64,295,201,4 253,23,276,95,4
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/002226.jpg 330,11,348,64,4 316,15,332,56,4 263,24,275,69,4 249,25,265,70,4 480,188,500,231,4 467,186,485,253,4 448,184,468,253,4 428,186,447,252,4 415,181,432,242,4 98,46,500,333,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/004987.jpg 44,186,285,365,14 189,180,307,358,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008835.jpg 42,5,168,117,15 174,4,290,138,15 302,18,381,117,15 397,54,477,152,15 331,129,425,221,15 253,169,358,277,15 154,117,244,212,15
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001543.jpg 1,156,117,253,19 292,172,500,350,17
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/009299.jpg 88,224,500,333,10 401,62,500,313,14 266,65,403,280,14 1,47,115,308,14 194,1,225,55,4 279,1,301,56,4 14,15,28,54,4
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/007200.jpg 46,61,446,297,13 394,1,500,233,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/003176.jpg 139,160,287,311,6
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/002215.jpg 353,44,497,227,7 251,43,370,219,7 134,8,267,206,7 28,11,125,152,7 13,55,174,258,7
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/009072.jpg 1,2,154,284,8
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/006473.jpg 223,83,421,223,7 24,104,235,287,19
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008892.jpg 43,318,160,375,6 243,318,283,349,6 281,315,334,350,6 312,311,408,361,6 1,303,65,375,6 372,251,500,360,6 195,315,208,347,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005278.jpg 104,65,319,318,12 3,132,101,243,12 204,45,266,218,14 151,72,199,142,14 42,94,78,191,14 263,90,283,131,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/007108.jpg 414,189,500,288,1 257,176,371,265,1 284,179,401,263,1 160,169,261,257,1 61,137,150,225,1 2,122,52,188,1 1,79,50,162,14 81,94,149,201,14 150,111,202,190,14 189,124,259,232,14 282,133,358,229,14 319,132,390,235,14 443,159,500,270,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/004487.jpg 63,157,227,418,12 60,41,196,252,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/004549.jpg 139,112,227,190,19 354,147,499,270,8
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/006350.jpg 20,68,454,228,0
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001194.jpg 72,180,281,340,1
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/007845.jpg 70,34,312,355,2 130,70,458,263,2
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/009005.jpg 86,72,173,249,14 242,63,381,353,14 182,58,270,239,14 168,56,214,223,14 323,15,397,202,14 122,8,160,104,14 91,160,167,291,1 238,201,375,375,1 196,153,267,287,1
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/000269.jpg 185,264,205,320,4 298,245,326,312,4 227,56,497,213,14 91,59,245,261,14 37,134,203,332,14 226,75,413,274,14 258,114,477,332,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/006243.jpg 1,178,366,375,13 38,97,500,324,13 75,52,138,250,14 205,68,246,149,14 266,37,314,192,14 347,37,385,195,14 416,43,463,202,14 132,50,170,159,14 313,46,349,181,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001642.jpg 11,2,331,463,11
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/003462.jpg 134,187,316,375,11 196,41,337,242,11 130,1,262,192,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/007054.jpg 17,13,375,500,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/009865.jpg 150,142,238,330,9 1,141,139,333,9 220,141,316,282,9
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/009392.jpg 410,194,500,331,5 249,230,294,247,6 215,223,249,237,6 173,223,206,237,6 290,223,314,233,6 19,224,51,238,6 1,283,74,331,6
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/003998.jpg 12,60,500,307,6
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/000435.jpg 205,108,427,295,12 235,75,300,275,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/000920.jpg 2,31,500,363,18 281,67,330,199,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008248.jpg 245,128,349,375,12 327,57,477,375,14 292,44,346,138,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/002835.jpg 35,144,366,204,18
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/002209.jpg 72,72,500,500,16
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/004685.jpg 70,165,161,341,14 119,167,328,414,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005071.jpg 10,156,55,180,6 293,163,327,186,6 327,181,379,206,6 422,174,459,198,6 444,201,493,237,6 103,199,198,230,6 65,164,121,187,6
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/003855.jpg 243,139,389,229,13 264,105,331,209,14 32,111,97,210,14 156,119,221,213,14 130,164,235,225,1 16,154,104,218,1
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/000282.jpg 327,104,476,300,14 232,57,357,374,14 3,32,199,374,14 58,139,296,374,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008940.jpg 8,6,493,333,0
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/009022.jpg 138,143,263,370,11 293,2,500,374,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/004510.jpg 123,50,244,153,19 101,199,255,375,8 422,84,500,359,8
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001595.jpg 268,162,442,296,5 40,158,275,288,5
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/000892.jpg 350,191,427,375,14 190,212,344,375,13
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008757.jpg 49,82,421,290,1
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005674.jpg 10,63,288,476,2
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001012.jpg 225,117,307,206,0
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001206.jpg 274,1,429,288,14 172,141,236,326,11
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001233.jpg 64,143,257,500,7
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/004220.jpg 152,132,380,214,2
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/003307.jpg 3,29,308,251,12
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001350.jpg 1,184,124,375,8 111,114,264,375,14 245,152,356,375,14 307,114,462,372,14 168,143,335,375,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/009100.jpg 253,192,399,306,4
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008900.jpg 1,42,500,124,3 1,53,500,208,3 3,193,92,301,14 161,148,218,303,14 205,151,287,248,14 353,110,412,255,14 411,109,482,203,14 401,7,461,64,14 309,13,387,71,14 231,25,291,83,14 45,48,103,100,14 167,34,219,85,14 127,278,199,362,11
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/003937.jpg 1,2,312,333,7
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/007275.jpg 1,67,300,211,17
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005861.jpg 246,147,382,222,6 30,160,84,183,6 122,160,183,185,6
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/009468.jpg 87,40,247,216,12 112,32,199,135,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008606.jpg 114,75,348,360,11
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008766.jpg 3,123,255,450,18 179,238,222,289,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/004656.jpg 146,284,234,383,12 177,240,208,330,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/006134.jpg 125,99,442,318,12
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008001.jpg 252,25,500,131,6 393,86,500,151,6 52,96,458,282,6
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/002096.jpg 46,45,270,500,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/004170.jpg 77,189,411,250,3 335,153,368,207,14 312,174,342,214,14 125,140,157,196,14 156,143,211,219,14 185,140,213,218,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008919.jpg 87,79,249,205,12
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/004748.jpg 27,215,234,334,0 265,253,330,276,0 376,309,422,332,6 346,326,405,357,6
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/004816.jpg 113,37,365,294,11
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001948.jpg 65,52,398,306,13
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/009558.jpg 99,30,374,218,6 394,9,412,49,14 373,1,403,52,14 352,1,374,39,14 275,1,315,39,14 231,3,277,32,14 100,25,127,59,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/002423.jpg 233,146,410,237,18
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001727.jpg 1,41,305,317,12 123,15,413,317,12
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/002238.jpg 240,129,305,246,12 235,91,300,231,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008254.jpg 1,51,418,314,7
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/007697.jpg 70,206,242,436,12 105,116,204,330,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005263.jpg 3,4,499,373,17
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008653.jpg 137,27,312,454,12
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/004479.jpg 2,63,85,326,14 86,303,139,375,4 47,271,89,375,4 171,73,373,361,14 373,123,500,375,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/009161.jpg 19,179,423,317,5 212,247,262,364,14 280,241,323,364,14 372,241,405,326,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001200.jpg 16,8,475,321,18
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/009531.jpg 221,219,245,252,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/003599.jpg 126,34,376,327,1
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008933.jpg 80,230,248,401,7 234,346,284,407,15 234,383,297,447,15
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/002443.jpg 51,175,333,393,11 3,135,286,321,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/002201.jpg 4,23,498,374,5
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/006029.jpg 2,52,51,121,19 140,33,175,99,14 26,39,174,142,14 132,33,217,136,14 225,46,252,82,15 252,38,283,72,15 261,39,377,124,8 1,109,500,375,17 150,132,490,307,14 52,217,371,309,11
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/006028.jpg 19,80,93,144,1 282,81,331,289,14 177,200,215,249,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/002183.jpg 2,139,412,327,12 33,1,183,327,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/006203.jpg 46,366,275,458,6
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/003032.jpg 34,90,471,232,0 132,253,176,306,6 1,240,143,331,6
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008573.jpg 73,190,327,415,17 176,178,303,314,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008385.jpg 1,378,327,500,10 104,196,305,454,14 269,318,354,500,8
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/002834.jpg 4,2,223,485,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008695.jpg 4,21,482,333,13 140,1,417,57,13
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/004794.jpg 190,140,405,243,2
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/004423.jpg 53,107,260,311,16 241,86,445,286,16 213,173,291,325,16
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005114.jpg 311,54,404,189,14 325,103,388,242,12 451,132,500,219,9 56,136,132,257,9
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001475.jpg 49,154,500,362,13 235,79,438,354,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/007536.jpg 245,121,500,312,17
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008107.jpg 10,57,494,232,0
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005408.jpg 87,113,335,269,11
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/006963.jpg 240,225,427,300,7 73,84,197,225,14 323,1,500,330,8
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001932.jpg 168,2,453,325,14 2,120,92,371,14 74,2,217,145,8
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008576.jpg 208,41,343,364,14 342,121,454,364,14 125,129,244,364,14 10,198,117,364,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/006859.jpg 181,1,299,110,15 297,1,500,371,15
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/003759.jpg 105,129,226,375,14 202,142,279,375,14 254,136,426,375,14 393,189,474,290,19
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008398.jpg 32,63,158,169,14 121,109,179,191,14 194,108,243,375,14 222,98,305,375,14 279,106,362,234,14 312,75,362,128,14 291,92,471,375,14 408,77,500,374,14 100,121,214,375,14 1,81,129,375,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008220.jpg 1,1,458,333,18 214,153,295,219,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/002549.jpg 242,74,404,220,19
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/006201.jpg 186,174,500,224,18
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001091.jpg 390,174,500,357,14 254,148,426,327,14 84,167,247,361,14 337,57,435,144,15 153,63,227,144,15
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005079.jpg 22,110,454,305,0
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/009898.jpg 3,3,498,331,6
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/007873.jpg 1,153,487,360,17
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008372.jpg 200,93,359,182,0
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/006794.jpg 92,117,373,203,0
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/009710.jpg 43,98,500,375,9
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/004047.jpg 2,103,122,352,8 37,83,189,373,8 151,91,398,471,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/009336.jpg 61,78,396,328,6 72,142,116,197,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001937.jpg 11,211,332,433,6
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/004010.jpg 1,134,500,362,17 118,8,450,418,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008091.jpg 2,3,322,319,3 111,209,175,288,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/002448.jpg 169,93,279,281,14 41,146,360,435,12
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/002772.jpg 32,146,436,273,6
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005647.jpg 213,218,315,364,8 72,223,164,346,8 41,190,97,306,8 153,181,255,326,8 22,189,309,344,10
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008633.jpg 125,4,292,80,1 128,2,270,59,1 296,12,500,233,6 2,5,196,244,6
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/004360.jpg 18,65,333,500,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/006506.jpg 362,133,500,281,12 318,153,386,271,12 236,142,287,285,12 164,175,215,271,12 3,201,115,305,12 72,170,122,276,12 399,109,454,226,14 320,124,376,223,14 231,122,291,233,14 163,133,218,235,14 74,142,121,242,14 31,143,82,260,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001593.jpg 125,128,276,433,14 195,336,382,500,14 264,259,339,355,14 315,242,412,424,14 17,238,128,410,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001800.jpg 84,72,242,371,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/004938.jpg 5,170,500,374,17
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/002727.jpg 205,221,313,333,1 136,85,242,333,14 209,142,309,326,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/000228.jpg 92,82,314,228,0
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/003729.jpg 199,1,266,128,4 405,1,500,227,4
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/004433.jpg 49,350,341,500,11 123,78,258,409,14 98,79,168,154,14 222,15,290,115,15
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/002695.jpg 7,3,279,337,9 426,114,500,184,9 348,107,405,166,9
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005716.jpg 1,7,295,297,14 368,1,500,206,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/007167.jpg 9,98,347,219,6 51,107,500,306,6 338,114,388,171,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/007809.jpg 87,25,500,373,12 370,3,500,323,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/000189.jpg 65,39,459,346,2
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/009255.jpg 12,5,248,197,12
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/007359.jpg 373,71,500,195,19 9,32,341,375,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/009330.jpg 94,147,291,375,14 181,22,500,375,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/007396.jpg 284,1,376,99,15 177,1,275,100,15 292,1,397,94,15
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/000232.jpg 47,92,376,334,9 230,32,252,93,14 404,71,500,119,3
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/003936.jpg 34,202,190,259,6
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005293.jpg 99,80,184,195,11
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005396.jpg 8,132,226,344,19 37,156,201,291,14 269,122,486,475,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001509.jpg 139,279,179,366,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001661.jpg 107,199,330,374,16
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005467.jpg 345,107,408,303,4 402,64,498,241,14 347,71,427,184,14 38,21,220,375,14 111,192,500,375,10
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001677.jpg 110,269,500,375,10 52,230,140,375,8
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/000827.jpg 214,153,250,199,9 250,160,310,202,9
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/003926.jpg 1,1,316,470,18
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001001.jpg 62,64,325,375,7 315,102,427,356,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001430.jpg 1,269,250,374,10 100,154,235,286,14 211,146,303,352,14 245,154,398,374,14 316,1,418,66,19 344,83,428,214,15
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/009000.jpg 219,168,284,225,11 367,162,475,238,14 30,7,49,50,14 23,1,160,46,6
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/007153.jpg 228,166,317,276,9 321,114,355,189,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005352.jpg 137,97,237,291,11
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/004841.jpg 107,200,171,243,0 350,108,375,125,0
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001734.jpg 100,84,441,313,16
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/003871.jpg 119,82,313,433,2
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/002320.jpg 69,33,282,202,15
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001042.jpg 222,248,298,319,11 149,174,220,322,14 277,163,334,347,14 362,163,409,336,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005369.jpg 310,220,387,255,3
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/006238.jpg 278,112,404,224,19 258,1,358,139,14 40,11,317,333,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/000323.jpg 277,3,500,375,14 12,3,305,375,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/002345.jpg 78,144,282,477,11
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/004671.jpg 49,1,283,497,4
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005873.jpg 140,191,245,338,11 149,2,296,331,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005056.jpg 43,45,242,213,11
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/006903.jpg 216,1,496,373,14 1,2,247,375,14 255,96,384,253,11 100,149,214,341,11
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/003112.jpg 164,87,306,332,2
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001207.jpg 125,77,500,375,2
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008442.jpg 231,70,387,221,7
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001393.jpg 61,194,325,375,10 2,194,78,374,8 289,140,480,375,14 291,130,400,355,14 197,124,285,199,14 15,131,133,375,14 260,164,280,213,4 213,164,230,209,4 206,176,221,216,4 134,180,250,375,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005191.jpg 62,128,500,285,10 33,206,445,375,10 24,143,85,223,8 160,142,210,208,8 207,126,245,223,8 237,127,268,230,8 254,131,292,242,8 282,142,358,278,8 347,153,426,330,8 414,171,500,374,8
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/007935.jpg 124,126,380,284,11
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001982.jpg 85,50,379,348,7
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005668.jpg 2,131,185,373,11 167,117,338,373,11 293,112,500,324,11
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001143.jpg 14,40,373,475,9
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/006458.jpg 196,62,493,271,6 26,110,235,265,6
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/003567.jpg 114,47,149,168,14 184,48,344,276,14 178,109,338,292,13 1,103,35,141,13
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/007633.jpg 1,117,236,269,5 225,126,344,255,5 340,130,500,238,5
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/000989.jpg 52,117,109,177,19
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/009579.jpg 20,2,375,500,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/009500.jpg 375,253,475,363,14 62,236,172,374,14 228,215,385,374,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/000733.jpg 48,25,273,383,14 103,201,448,435,13
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/002270.jpg 70,49,475,317,1
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008732.jpg 101,197,223,395,2
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001830.jpg 38,47,265,491,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/002899.jpg 26,56,371,390,5 251,199,349,442,14 217,227,274,434,14 149,327,201,449,14 96,309,184,464,14 29,305,100,474,14 1,245,74,448,14 3,220,156,318,14 72,232,131,341,14 126,213,174,245,14 154,184,206,237,14 188,179,256,235,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005007.jpg 116,10,390,266,19
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/007454.jpg 179,56,500,314,7 18,43,393,361,7
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/000109.jpg 17,12,482,235,2
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008967.jpg 229,15,379,331,4 359,15,480,322,4 162,54,260,333,4 137,71,233,332,4
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008717.jpg 185,156,283,256,10 167,149,217,263,8 203,162,251,287,8 139,147,188,207,8
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/006883.jpg 93,131,252,250,7
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/000424.jpg 65,159,134,216,2 189,197,284,254,2 327,209,401,252,2 411,177,486,227,2
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005704.jpg 387,174,500,255,10 437,113,492,178,14 352,130,433,273,14 279,198,390,307,14 270,232,408,374,14 197,294,322,375,14 74,82,220,302,14 58,121,100,173,14 7,131,57,179,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/002441.jpg 43,64,500,362,7 2,88,500,375,19
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/009153.jpg 3,107,375,500,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005608.jpg 1,226,303,462,13 31,146,199,441,14 97,181,241,321,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005818.jpg 89,112,198,375,14 184,153,283,375,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005124.jpg 179,68,500,324,9 3,33,271,324,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/003966.jpg 35,7,313,93,5 138,16,238,280,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001045.jpg 214,2,327,276,4
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/004012.jpg 53,120,294,500,14 66,226,229,472,14 1,113,375,500,8
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/009434.jpg 16,82,482,301,6 354,15,433,105,14 209,7,284,82,14 160,1,208,45,14 395,1,472,61,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/006286.jpg 80,88,405,375,14 436,147,475,209,14 381,145,428,191,14 104,185,209,279,10 408,241,500,375,8 49,178,135,279,8 150,184,233,290,8 19,167,65,231,8
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008886.jpg 11,1,229,201,12 167,2,241,172,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/007101.jpg 100,77,382,281,18
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008084.jpg 111,212,233,365,2
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/004517.jpg 2,98,355,500,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/002496.jpg 61,70,500,348,18
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/007718.jpg 56,174,327,361,14 95,124,496,257,3
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/009649.jpg 324,188,434,336,14 302,128,405,340,14 277,75,364,212,14 197,138,297,258,14 196,96,307,335,14 116,86,290,347,14 53,86,344,375,14 385,72,495,283,8
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/009801.jpg 168,209,279,249,6 1,220,33,244,6 368,218,404,233,6
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/000791.jpg 84,46,450,297,18
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/006847.jpg 68,139,180,300,12 187,96,397,286,12 235,67,297,214,14 85,91,139,242,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005910.jpg 218,78,351,179,2
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/006855.jpg 24,33,309,496,1 24,1,66,105,14 1,1,31,114,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005273.jpg 108,55,285,156,6 235,84,418,153,6 336,12,415,160,14 397,50,439,154,14 1,112,305,357,1
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008521.jpg 76,2,381,375,7
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008186.jpg 2,4,484,442,11
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/003957.jpg 15,73,413,253,18
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/004644.jpg 1,26,186,260,11
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/000832.jpg 89,38,337,500,2
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/007243.jpg 3,43,371,372,12 63,130,266,373,14 249,178,360,374,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/002037.jpg 100,89,402,367,2
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/002332.jpg 121,39,254,231,14 337,61,494,182,14 101,81,500,362,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/004963.jpg 68,41,475,304,7
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/000947.jpg 36,43,217,474,11
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/003918.jpg 26,78,285,500,2
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/004498.jpg 126,159,215,284,3
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/004836.jpg 1,147,474,446,13
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/006738.jpg 208,135,274,283,14 72,159,114,250,14 212,199,277,314,1 79,196,118,261,1
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/003083.jpg 344,455,375,480,6 270,426,375,480,5
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/004149.jpg 157,92,330,262,7 1,89,500,375,10 2,14,158,375,8
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005508.jpg 89,131,275,500,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/004542.jpg 337,20,461,362,14 200,118,312,335,14 5,219,129,375,14 70,177,128,319,14 134,137,500,321,17
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/000078.jpg 15,75,475,412,11 94,41,437,238,11
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/000317.jpg 118,151,407,221,6
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/007877.jpg 3,4,282,373,14 194,103,428,375,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/009470.jpg 2,11,500,262,17 19,112,227,156,7 229,123,468,211,7
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/006611.jpg 80,135,224,393,12 181,237,295,382,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001395.jpg 35,24,499,375,7
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/009868.jpg 73,139,234,415,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/000633.jpg 300,122,433,240,19 2,22,339,375,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/000450.jpg 38,36,325,426,18
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008079.jpg 148,133,203,309,14 195,127,274,308,14 270,137,320,273,14 338,187,366,275,14 321,151,373,274,14 267,249,356,331,11 48,137,159,198,6
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/002525.jpg 1,234,461,372,18
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/000544.jpg 286,93,491,229,7 1,66,307,326,7
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008461.jpg 261,135,355,171,6 154,161,358,224,6
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/000439.jpg 1,168,308,209,18
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/002842.jpg 167,98,425,296,12 242,53,306,211,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/009512.jpg 236,275,374,500,12 2,143,191,500,14 23,127,51,221,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/007068.jpg 3,157,357,342,6 2,110,357,186,6 34,74,357,133,6 63,46,338,118,6 94,24,321,75,6
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/004955.jpg 97,16,382,291,7 1,225,441,373,19
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001962.jpg 407,99,500,333,5
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001072.jpg 80,213,418,309,17 160,170,316,309,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/000936.jpg 299,10,347,63,0 314,105,364,156,0 334,149,378,200,0 261,208,305,254,0 155,277,201,329,0
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008823.jpg 58,114,500,290,17
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/007776.jpg 167,111,263,156,18 105,147,375,259,18 355,135,500,204,18
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/006919.jpg 425,151,441,202,4 358,36,446,104,14 320,46,449,142,14 266,70,411,261,14 157,62,358,273,14 187,139,378,369,14 65,176,231,375,14 163,266,186,322,4
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/002881.jpg 394,341,426,425,4 85,43,323,470,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/003555.jpg 405,261,427,288,15 375,265,397,290,15 337,265,359,296,15 288,270,315,297,15 236,272,259,304,15 438,241,500,301,6
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005884.jpg 56,36,370,324,13 81,39,245,212,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005574.jpg 130,127,500,308,0 158,199,226,374,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001972.jpg 18,76,291,415,11
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/004958.jpg 60,19,273,283,3
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/009872.jpg 39,243,136,311,8 157,245,261,306,8 277,241,367,303,8 309,306,462,375,8 114,308,275,374,8 1,307,87,375,8
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/007215.jpg 100,76,433,333,9
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/009494.jpg 185,184,254,311,13 185,154,258,285,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008019.jpg 15,122,365,318,12 173,66,288,274,14 381,164,480,318,6
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005735.jpg 1,100,493,287,18
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008443.jpg 206,98,393,310,2
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001272.jpg 182,87,242,202,4 181,154,300,264,4 103,22,469,414,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/000815.jpg 286,143,481,224,0 10,104,322,236,0
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/004879.jpg 262,158,332,202,1 269,136,309,192,14 174,131,197,189,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/003274.jpg 148,77,298,239,11
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/003516.jpg 61,154,439,291,10 367,132,478,287,8 2,132,111,284,8 270,154,363,315,8 177,155,262,308,8 71,153,181,312,8
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/004647.jpg 83,121,298,332,13 275,57,371,312,14 115,53,213,213,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008211.jpg 78,182,282,500,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001240.jpg 1,1,135,374,14 22,159,427,375,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005032.jpg 23,66,267,404,18
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/003907.jpg 107,167,338,321,17 269,209,496,375,17 3,129,41,276,8
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/002278.jpg 8,76,486,312,5
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/002456.jpg 5,1,85,126,8 20,1,114,119,8 1,76,500,375,10
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/004706.jpg 117,20,362,340,14 46,164,428,357,1
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/004612.jpg 230,133,270,202,2
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/006797.jpg 181,65,384,374,14 1,46,242,371,12
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001739.jpg 149,178,214,317,2
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/004339.jpg 33,200,199,452,12 64,95,169,323,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008189.jpg 315,155,472,270,9
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/003362.jpg 174,122,282,263,12 171,44,294,226,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/000690.jpg 1,188,247,361,1 281,111,336,229,7 226,87,336,371,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005790.jpg 267,34,500,281,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/004723.jpg 359,128,460,375,14 16,136,65,284,14 1,131,56,304,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/003047.jpg 383,80,434,189,1 277,87,366,173,1 190,80,262,161,1
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001010.jpg 157,6,308,146,19
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008438.jpg 215,137,377,287,2
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005838.jpg 73,17,467,287,7
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/006395.jpg 408,35,479,188,19 134,117,316,347,14 17,183,213,375,8
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/002348.jpg 186,135,299,253,0 61,114,179,230,0
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/000612.jpg 158,144,375,500,14 1,110,195,500,14 1,1,374,213,18
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005453.jpg 1,235,197,330,11 203,3,500,333,12
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/009089.jpg 1,80,342,500,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/004916.jpg 30,34,334,333,14 355,244,464,333,4 119,87,169,148,19
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/006880.jpg 192,82,454,326,1 325,167,495,374,14 2,165,148,372,14 131,7,238,202,14 208,86,341,156,14 83,144,199,295,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/004973.jpg 111,149,235,239,6 281,149,408,240,6
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/007656.jpg 217,319,254,394,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/006304.jpg 321,197,357,252,3
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001539.jpg 102,167,357,350,1
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/009454.jpg 181,234,344,375,8 301,151,376,232,19
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008961.jpg 259,179,479,407,8 247,89,472,407,14 1,78,269,407,14 31,59,73,108,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/000208.jpg 330,223,500,375,8 117,114,180,219,8 59,122,131,255,8 203,151,436,308,17
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/006234.jpg 15,63,499,232,7
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/007204.jpg 32,1,274,238,7
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/004228.jpg 42,71,429,262,6 40,56,122,87,6
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005878.jpg 100,92,323,222,13
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/003895.jpg 1,2,500,246,18
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005563.jpg 419,1,500,77,19 207,39,374,330,14 104,84,369,374,14 356,81,373,127,4
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/007259.jpg 11,26,366,500,8
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/002779.jpg 32,132,229,234,6 284,126,440,243,6
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005843.jpg 124,199,294,312,9
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/003932.jpg 207,345,247,493,4 62,20,283,493,14 243,273,372,412,15
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/009362.jpg 278,48,400,333,14 136,76,258,311,14 32,33,178,332,14 373,238,476,333,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005679.jpg 440,47,500,119,6 42,27,443,330,6 2,74,115,312,6 33,42,140,124,6
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/006585.jpg 168,41,325,234,14 143,101,331,258,13
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/003088.jpg 107,269,154,366,4 69,65,330,375,14 209,91,286,211,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/002690.jpg 82,296,327,500,11
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005928.jpg 388,103,500,337,13 2,153,104,375,13 84,149,156,245,13 214,136,326,331,13 289,77,334,201,14 212,89,331,298,14 144,85,207,315,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001555.jpg 333,294,390,368,7
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/006708.jpg 164,151,206,182,9 305,181,380,286,9 398,181,452,281,9
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008836.jpg 148,80,441,375,14 340,70,430,266,14 1,115,127,375,14 446,278,500,375,14 417,112,500,330,14 429,1,456,67,14 256,11,282,77,14 1,103,55,214,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001936.jpg 84,185,134,208,0 202,153,255,178,0 249,189,298,211,0
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/002237.jpg 58,1,479,375,9
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/003354.jpg 93,75,256,223,9
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001289.jpg 157,98,355,188,2
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005853.jpg 180,104,326,192,18
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/007521.jpg 20,79,109,202,3
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/007812.jpg 1,199,65,301,8 122,237,269,375,8
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/003102.jpg 60,32,262,362,14 60,200,243,461,1
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001976.jpg 171,89,376,143,3
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/009333.jpg 100,86,312,238,19 207,202,352,268,11
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005859.jpg 2,3,298,375,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001073.jpg 55,178,149,248,9 135,176,174,241,9 227,153,282,236,9 276,159,350,255,9 327,152,425,240,9 421,161,500,227,9
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/009129.jpg 80,67,480,326,17
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008985.jpg 3,9,314,496,2
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/000035.jpg 1,96,191,361,14 218,98,465,318,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008098.jpg 73,176,100,192,6 267,156,362,198,6 360,163,486,214,6 298,133,395,181,5 98,113,230,213,5
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/007446.jpg 43,241,218,500,1 53,9,203,380,14 192,125,346,184,6 1,121,43,147,6
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/007586.jpg 1,145,241,248,18
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/002569.jpg 33,23,353,482,15 1,72,52,417,15
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001590.jpg 148,223,231,450,4 303,40,375,324,19
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/006564.jpg 1,58,500,232,0
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/007375.jpg 23,35,500,375,0
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/000169.jpg 23,28,480,284,6 102,3,161,50,14 439,23,500,178,6 419,39,444,81,14 454,36,487,71,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008541.jpg 40,107,64,138,14 199,153,242,243,14 2,80,147,336,14 315,55,382,172,14 292,57,500,335,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005395.jpg 253,209,292,238,16 287,209,312,241,16 345,202,382,229,16 406,224,457,267,16 172,195,207,220,16 147,195,179,215,16
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/000895.jpg 126,71,274,359,14 25,101,157,343,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008698.jpg 2,29,287,500,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/007790.jpg 73,124,106,174,8 146,1,210,61,6 188,1,267,53,6 23,129,125,362,4
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/007940.jpg 90,16,383,375,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/007857.jpg 129,106,228,185,0
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005315.jpg 222,174,286,276,1 226,116,287,248,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/006892.jpg 222,160,353,375,4 194,167,264,375,4
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005153.jpg 44,147,94,217,8 104,216,288,375,8 94,177,234,358,8 157,115,200,164,19 182,109,235,178,19 210,95,340,204,19 309,67,500,267,19
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008620.jpg 15,22,404,375,11
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/002375.jpg 11,15,496,316,7
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/006285.jpg 256,78,343,237,14 139,87,230,239,14 242,117,352,308,12 143,129,238,306,12
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/002593.jpg 230,164,288,234,16
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/000622.jpg 156,87,401,339,9
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/004605.jpg 93,121,352,325,1 411,7,500,139,1 158,29,292,315,14 444,36,500,332,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/007445.jpg 97,152,157,218,14 77,2,500,334,18
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001056.jpg 167,166,415,334,11 1,1,350,300,11
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005693.jpg 186,70,375,500,14 1,8,152,500,14 105,227,230,446,11
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005130.jpg 115,131,324,433,2
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/009318.jpg 238,8,330,242,14 32,58,438,334,12 372,102,400,123,6 351,101,376,124,6
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/000812.jpg 99,171,376,333,1 149,33,360,333,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/009128.jpg 3,12,304,420,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/008931.jpg 218,257,281,374,4 43,211,82,353,4 111,117,274,374,14 249,122,390,374,14 70,140,171,318,14 1,136,93,299,14 307,2,460,374,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005588.jpg 150,223,266,311,6
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/009515.jpg 2,216,62,250,6 66,195,135,231,6 118,172,167,198,6 115,176,144,198,6
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/007889.jpg 290,64,424,375,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/007572.jpg 2,97,315,234,10 40,100,67,181,4 19,99,38,174,4 265,46,491,333,14 4,53,235,331,14
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/001607.jpg 21,1,500,374,11
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/005018.jpg 191,85,412,308,11 23,5,250,198,11
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/003008.jpg 211,127,263,146,3
+/Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC2007/FOG/006933.jpg 165,19,500,315,12 4,36,160,332,12
