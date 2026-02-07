@@ -63,8 +63,8 @@ weight_decay = 5e-4
 lr_decay_type = "cos"
 
 # Save config
-save_period = 5  # Save every 5 epochs for Kaggle
-save_dir = os.path.join(OUTPUT_DIR, 'logs')
+save_period = 2  # Save every 2 epochs to prevent loss
+save_dir = '/kaggle/working/logs'  # Save outside git repo
 eval_flag = True
 eval_period = 10
 num_workers = 2  # Kaggle has limited workers

@@ -53,14 +53,20 @@ def evaluate_rtts(model_path=None):
     from yolo import YOLO
     from utils.utils_map import get_map
     
-    # Find checkpoint
+    # Priority: argument > trained checkpoint > paper's pretrained model
     if model_path is None:
         model_path = find_best_checkpoint()
     
+    # Fallback to paper's pretrained model
     if model_path is None or not os.path.exists(model_path):
-        print("❌ No checkpoint found!")
-        print("   Please train first or specify model_path")
-        return
+        paper_model = 'model_data/RDFNet.pth'
+        if os.path.exists(paper_model):
+            print("📌 Using paper's pretrained RDFNet.pth")
+            model_path = paper_model
+        else:
+            print("❌ No checkpoint found!")
+            print("   Please train first or specify model_path")
+            return
     
     print("=" * 60)
     print("📊 RDFNet Evaluation on RTTS")
