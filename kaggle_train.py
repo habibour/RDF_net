@@ -63,8 +63,8 @@ weight_decay = 5e-4
 lr_decay_type = "cos"
 
 # Save config
-save_period = 2  # Save every 2 epochs to prevent loss
-save_dir = '/kaggle/working/logs'  # Save outside git repo
+save_period = 5  # Save every 5 epochs for Kaggle
+save_dir = os.path.join(OUTPUT_DIR, 'logs')
 eval_flag = True
 eval_period = 10
 num_workers = 2  # Kaggle has limited workers
@@ -72,6 +72,15 @@ num_workers = 2  # Kaggle has limited workers
 # Annotation paths
 train_annotation_path = os.path.join(OUTPUT_DIR, 'train_12k.txt')
 val_annotation_path = os.path.join(OUTPUT_DIR, 'val_12k.txt')
+test_annotation_path = os.path.join(OUTPUT_DIR, 'test_12k.txt')
+rtts_annotation_path = os.path.join(OUTPUT_DIR, 'rtts_test.txt')
+
+# RTTS dataset paths (for Kaggle - update these paths for your setup)
+RTTS_IMAGES = '/kaggle/input/rtts-dataset/RTTS/JPEGImages'
+RTTS_ANN = '/kaggle/input/rtts-dataset/RTTS/Annotations'
+
+# RTTS uses 5 classes (subset of VOC)
+RTTS_CLASSES = ["bicycle", "bus", "car", "motorbike", "person"]
 
 
 def find_latest_checkpoint():
@@ -108,14 +117,70 @@ def backup_checkpoint(local_path):
     print(f"💾 Backed up: {filename}")
 
 
-def generate_annotations():
-    """Generate training annotation files from VOC datasets"""
+def generate_rtts_annotations():
+    """Generate RTTS test annotation file"""
     import xml.etree.ElementTree as ET
     
-    print("\n📝 Generating annotation files...")
+    print("\n📝 Generating RTTS annotation file...")
     
-    train_lines = []
-    val_lines = []
+    if not os.path.exists(RTTS_IMAGES) or not os.path.exists(RTTS_ANN):
+        print(f"⚠️ RTTS dataset not found at {RTTS_IMAGES}")
+        return 0
+    
+    rtts_lines = []
+    images = [f for f in os.listdir(RTTS_IMAGES) if f.endswith(('.jpg', '.png', '.jpeg'))]
+    print(f"  RTTS: {len(images)} images")
+    
+    for img_name in images:
+        img_path = os.path.join(RTTS_IMAGES, img_name)
+        xml_name = os.path.splitext(img_name)[0] + '.xml'
+        xml_path = os.path.join(RTTS_ANN, xml_name)
+        
+        if not os.path.exists(xml_path):
+            continue
+        
+        try:
+            tree = ET.parse(xml_path)
+            root = tree.getroot()
+            
+            boxes = []
+            for obj in root.iter('object'):
+                cls_name = obj.find('name').text
+                # Map RTTS classes to VOC class IDs
+                if cls_name not in VOC_CLASSES:
+                    continue
+                
+                cls_id = VOC_CLASSES.index(cls_name)
+                bbox = obj.find('bndbox')
+                box = [
+                    int(float(bbox.find('xmin').text)),
+                    int(float(bbox.find('ymin').text)),
+                    int(float(bbox.find('xmax').text)),
+                    int(float(bbox.find('ymax').text)),
+                    cls_id
+                ]
+                boxes.append(','.join(map(str, box)))
+            
+            if boxes:
+                line = img_path + ' ' + ' '.join(boxes)
+                rtts_lines.append(line)
+        except Exception as e:
+            continue
+    
+    with open(rtts_annotation_path, 'w') as f:
+        f.write('\n'.join(rtts_lines))
+    
+    print(f"✅ RTTS annotations: {len(rtts_lines)}")
+    return len(rtts_lines)
+
+
+def generate_annotations():
+    """Generate training annotation files from VOC datasets with 80/10/10 split"""
+    import xml.etree.ElementTree as ET
+    
+    print("\n📝 Generating annotation files (80% train, 10% val, 10% test)...")
+    
+    all_lines = []
     
     datasets = [
         (VOC2007_FOG, VOC2007_ANN, 'VOC2007'),
@@ -167,16 +232,20 @@ def generate_annotations():
                 
                 if boxes:
                     line = img_path + ' ' + ' '.join(boxes)
-                    train_lines.append(line)
+                    all_lines.append(line)
             except Exception as e:
                 continue
     
-    # Split: 90% train, 10% val
+    # Split: 80% train, 10% val, 10% test
     import random
-    random.shuffle(train_lines)
-    split_idx = int(len(train_lines) * 0.9)
-    val_lines = train_lines[split_idx:]
-    train_lines = train_lines[:split_idx]
+    random.shuffle(all_lines)
+    n = len(all_lines)
+    train_end = int(n * 0.8)
+    val_end = int(n * 0.9)
+    
+    train_lines = all_lines[:train_end]
+    val_lines = all_lines[train_end:val_end]
+    test_lines = all_lines[val_end:]
     
     # Write files
     with open(train_annotation_path, 'w') as f:
@@ -185,10 +254,14 @@ def generate_annotations():
     with open(val_annotation_path, 'w') as f:
         f.write('\n'.join(val_lines))
     
-    print(f"✅ Train annotations: {len(train_lines)}")
-    print(f"✅ Val annotations: {len(val_lines)}")
+    with open(test_annotation_path, 'w') as f:
+        f.write('\n'.join(test_lines))
     
-    return len(train_lines), len(val_lines)
+    print(f"✅ Train annotations: {len(train_lines)} (80%)")
+    print(f"✅ Val annotations: {len(val_lines)} (10%)")
+    print(f"✅ Test annotations: {len(test_lines)} (10%)")
+    
+    return len(train_lines), len(val_lines), len(test_lines)
 
 
 if __name__ == "__main__":
@@ -225,8 +298,12 @@ if __name__ == "__main__":
     os.makedirs(CHECKPOINT_DIR, exist_ok=True)
     
     # Generate annotation files if they don't exist
-    if not os.path.exists(train_annotation_path) or not os.path.exists(val_annotation_path):
+    if not os.path.exists(train_annotation_path) or not os.path.exists(val_annotation_path) or not os.path.exists(test_annotation_path):
         generate_annotations()
+    
+    # Generate RTTS annotations if they don't exist
+    if not os.path.exists(rtts_annotation_path):
+        generate_rtts_annotations()
     
     # Check for resume
     resume_epoch = 0
@@ -290,13 +367,25 @@ if __name__ == "__main__":
         train_lines = f.readlines()
     with open(val_annotation_path, encoding='utf-8') as f:
         val_lines = f.readlines()
+    with open(test_annotation_path, encoding='utf-8') as f:
+        test_lines = f.readlines()
+    
+    # Load RTTS annotations if available
+    rtts_lines = []
+    if os.path.exists(rtts_annotation_path):
+        with open(rtts_annotation_path, encoding='utf-8') as f:
+            rtts_lines = f.readlines()
     
     clear_lines = train_lines.copy()
     num_train = len(train_lines)
     num_val = len(val_lines)
+    num_test = len(test_lines)
+    num_rtts = len(rtts_lines)
     
     print(f"\n📊 Training samples: {num_train}")
     print(f"📊 Validation samples: {num_val}")
+    print(f"📊 Test samples (VOC-FOG): {num_test}")
+    print(f"📊 RTTS samples: {num_rtts}")
     
     # Show config
     show_config(
@@ -450,3 +539,42 @@ if __name__ == "__main__":
     print("=" * 60)
     
     loss_history.writer.close()
+    
+    # ============================================
+    # EVALUATION ON TEST SETS
+    # ============================================
+    
+    print("\n" + "=" * 60)
+    print("🧪 FINAL EVALUATION ON TEST SETS")
+    print("=" * 60)
+    
+    # 1. Evaluate on VOC-FOG Test Set
+    print("\n" + "-" * 40)
+    print("📊 Result 1: VOC-FOG Test Set")
+    print("-" * 40)
+    
+    voc_test_callback = EvalCallback(
+        model, input_shape, anchors, anchors_mask, class_names,
+        num_classes, test_lines, log_dir, Cuda,
+        eval_flag=True, period=1
+    )
+    voc_test_callback.on_epoch_end(UnFreeze_Epoch - 1, logs=None)
+    
+    # 2. Evaluate on RTTS Dataset
+    if rtts_lines:
+        print("\n" + "-" * 40)
+        print("📊 Result 2: RTTS Dataset (Real-world Foggy)")
+        print("-" * 40)
+        
+        rtts_callback = EvalCallback(
+            model, input_shape, anchors, anchors_mask, class_names,
+            num_classes, rtts_lines, log_dir, Cuda,
+            eval_flag=True, period=1
+        )
+        rtts_callback.on_epoch_end(UnFreeze_Epoch - 1, logs=None)
+    else:
+        print("\n⚠️ RTTS dataset not available for evaluation")
+    
+    print("\n" + "=" * 60)
+    print("✅ All evaluations complete!")
+    print("=" * 60)
