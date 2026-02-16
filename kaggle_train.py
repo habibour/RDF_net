@@ -34,6 +34,17 @@ from utils.utils_fit import fit_one_epoch
 dataset_root = "/kaggle/input/..."  # user will set
 checkpoint_path = "/kaggle/input/datasets/mdhabibourrahman/rdfnet-pth/RDFNet.pth"
 
+# Auto-install required packages for Kaggle
+try:
+    import subprocess
+    import sys
+    print("🔧 Checking and installing required packages...")
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "thop", "colorama"], 
+                         capture_output=True)
+    print("✅ Required packages installed!")
+except Exception as e:
+    print(f"⚠️ Package installation failed: {e}. Continuing with optional imports...")
+
 # Experiment config
 training_epochs = 80
 method_name = "baseline_pixel"  # or "ours_feature"
@@ -99,14 +110,38 @@ def validate_dataset_paths():
     voc_root = os.path.join(dataset_root, "VOC_FOG_12K_Upload")
     rtts_root = os.path.join(dataset_root, "RTTS")
 
-    train_list = os.path.join(voc_root, "ImageSets", "Main", "train.txt")
-    val_list = os.path.join(voc_root, "ImageSets", "Main", "val.txt")
-    test_list = os.path.join(voc_root, "ImageSets", "Main", "test.txt")
+    # Check for splits in multiple possible locations (writable locations first)
+    possible_split_locations = [
+        os.path.join("/kaggle/working", "ImageSets", "Main"),  # Fixed writable location
+        os.path.join("/kaggle/working/dataset_splits", "ImageSets", "Main"),  # From make_vocfog_split.py
+        os.path.join(voc_root, "ImageSets", "Main"),  # Original location (read-only)
+        os.path.join("/kaggle/working", "VOC_FOG_12K_Upload", "ImageSets", "Main")  # Working directory
+    ]
+    
+    splits_dir = None
+    for location in possible_split_locations:
+        if os.path.exists(os.path.join(location, "train.txt")):
+            splits_dir = location
+            print(f"📍 Found dataset splits in: {splits_dir}")
+            break
+    
+    if not splits_dir:
+        raise FileNotFoundError("Dataset splits not found. Run make_vocfog_split.py first.")
+    
+    train_list = os.path.join(splits_dir, "train.txt")
+    val_list = os.path.join(splits_dir, "val.txt")
+    test_list = os.path.join(splits_dir, "test.txt")
     rtts_test_list = os.path.join(rtts_root, "ImageSets", "Main", "test.txt")
 
-    for p in [voc_root, rtts_root, train_list, val_list, test_list, rtts_test_list]:
+    # Check required paths
+    for p in [voc_root, rtts_root]:
         if not os.path.exists(p):
             raise FileNotFoundError(f"Missing required path: {p}")
+    
+    # Check if split files exist
+    for split_file in [train_list, val_list, test_list]:
+        if not os.path.exists(split_file):
+            raise FileNotFoundError(f"Missing split file: {split_file}")
 
     return voc_root, rtts_root, train_list, val_list, test_list, rtts_test_list
 

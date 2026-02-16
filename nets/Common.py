@@ -1,6 +1,12 @@
 import torch
 import torch.nn as nn
-from thop import profile 
+try:
+    from thop import profile
+    THOP_AVAILABLE = True
+except ImportError:
+    THOP_AVAILABLE = False
+    def profile(model, inputs):
+        return 0, 0 
 
 class SiLU(nn.Module):
     @staticmethod
