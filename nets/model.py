@@ -81,11 +81,16 @@ class YoloBody(nn.Module):
                 m.forward = m.fuseforward
         return self
     
-    def forward(self, x):
-        if self.training:
-            feat1, feat2, feat3, dehazing = self.backbone.forward(x)
+    def forward(self, x, return_feats=False, det_only=False):
+        if det_only:
+            feat1, feat2, feat3 = self.backbone.forward(x, det_only=True)
+            dehazing = None
         else:
-            feat1, feat2, feat3 = self.backbone.forward(x)
+            if self.training:
+                feat1, feat2, feat3, dehazing = self.backbone.forward(x, det_only=False)
+            else:
+                feat1, feat2, feat3 = self.backbone.forward(x, det_only=False)
+                dehazing = None
 
         P5          = self.sppelan(feat3)
         P5_conv     = self.conv_for_P5(P5)
@@ -115,7 +120,11 @@ class YoloBody(nn.Module):
         out1 = self.yolo_head_P4(P4)
         out0 = self.yolo_head_P5(P5)
 
-        if self.training:
-            return [out0, out1, out2, dehazing]
-        else:
-            return [out0, out1, out2]
+        outputs = [out0, out1, out2]
+        if self.training and not det_only:
+            outputs.append(dehazing)
+
+        if return_feats:
+            feats = (P3, P4, P5)
+            return outputs, feats
+        return outputs

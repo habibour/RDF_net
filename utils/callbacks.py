@@ -60,7 +60,7 @@ class LossHistory():
 
 class EvalCallback():
     def __init__(self, net, input_shape, anchors, anchors_mask, class_names, num_classes, val_lines, log_dir, cuda, \
-            map_out_path=".temp_map_out", max_boxes=100, confidence=0.05, nms_iou=0.5, letterbox_image=True, MINOVERLAP=0.5, eval_flag=True, period=1):
+            map_out_path=".temp_map_out", max_boxes=100, confidence=0.05, nms_iou=0.5, letterbox_image=True, MINOVERLAP=0.5, eval_flag=True, period=1, keep_map_out=False):
         super(EvalCallback, self).__init__()
         self.net                = net
         self.input_shape        = input_shape
@@ -79,6 +79,7 @@ class EvalCallback():
         self.MINOVERLAP         = MINOVERLAP
         self.eval_flag          = eval_flag
         self.period             = period
+        self.keep_map_out       = keep_map_out
         self.bbox_util          = DecodeBox(self.anchors, self.num_classes, (self.input_shape[0], self.input_shape[1]), self.anchors_mask)
         self.maps       = [0]
         self.epoches    = [0]
@@ -163,4 +164,5 @@ class EvalCallback():
             plt.cla()
             plt.close("all")
             print("Get map done.")
-            shutil.rmtree(self.map_out_path)
+            if not self.keep_map_out:
+                shutil.rmtree(self.map_out_path)

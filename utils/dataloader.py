@@ -1,4 +1,6 @@
 from random import sample, shuffle
+import os
+import xml.etree.ElementTree as ET
 import cv2
 import numpy as np
 import torch
@@ -6,11 +8,104 @@ from PIL import Image
 from torch.utils.data.dataset import Dataset
 from utils.utils import cvtColor, preprocess_input
 
+_IMAGE_EXTS = (".jpg", ".jpeg", ".png", ".bmp")
+
+
+def _find_image_path(images_dir, image_id):
+    for ext in _IMAGE_EXTS:
+        image_path = os.path.join(images_dir, image_id + ext)
+        if os.path.exists(image_path):
+            return image_path
+    return None
+
+
+def _resolve_clean_images_dir(clean_root, image_dir):
+    if clean_root is None:
+        return None
+    candidate = os.path.join(clean_root, image_dir)
+    if os.path.isdir(candidate):
+        return candidate
+    return clean_root
+
+
+def build_voc_annotation_lines(list_path, dataset_root, class_names, image_dir="JPEGImages", ann_dir="Annotations", clean_root=None):
+    if class_names is None:
+        raise ValueError("class_names must be provided to build VOC annotation lines.")
+    if not os.path.exists(list_path):
+        raise FileNotFoundError(f"List file not found: {list_path}")
+    images_dir = os.path.join(dataset_root, image_dir)
+    annotations_dir = os.path.join(dataset_root, ann_dir)
+    clean_images_dir = _resolve_clean_images_dir(clean_root, image_dir) or images_dir
+
+    with open(list_path, "r", encoding="utf-8") as f:
+        image_ids = [line.strip() for line in f.readlines() if line.strip()]
+
+    annotation_lines = []
+    clean_lines = []
+    kept_ids = []
+
+    for image_id in image_ids:
+        xml_path = os.path.join(annotations_dir, image_id + ".xml")
+        image_path = _find_image_path(images_dir, image_id)
+        clean_image_path = _find_image_path(clean_images_dir, image_id)
+
+        if not image_path or not clean_image_path or not os.path.exists(xml_path):
+            continue
+
+        try:
+            tree = ET.parse(xml_path)
+            root = tree.getroot()
+        except Exception:
+            continue
+
+        boxes = []
+        for obj in root.iter("object"):
+            cls_name = obj.find("name").text
+            if cls_name not in class_names:
+                continue
+            cls_id = class_names.index(cls_name)
+            bbox = obj.find("bndbox")
+            if bbox is None:
+                continue
+            box = [
+                int(float(bbox.find("xmin").text)),
+                int(float(bbox.find("ymin").text)),
+                int(float(bbox.find("xmax").text)),
+                int(float(bbox.find("ymax").text)),
+                cls_id,
+            ]
+            boxes.append(",".join(map(str, box)))
+
+        if not boxes:
+            continue
+
+        line = image_path + " " + " ".join(boxes)
+        clean_line = clean_image_path + " " + " ".join(boxes)
+        annotation_lines.append(line)
+        clean_lines.append(clean_line)
+        kept_ids.append(image_id)
+
+    return annotation_lines, clean_lines, kept_ids
+
 class YoloDataset(Dataset):
-    def __init__(self, annotation_lines, clean_lines, input_shape, num_classes, anchors, anchors_mask, epoch_length, train):
+    def __init__(self, annotation_lines, clean_lines, input_shape, num_classes, anchors, anchors_mask, epoch_length, train,
+                 list_path=None, dataset_root=None, class_names=None, clean_root=None):
         super(YoloDataset, self).__init__()
-        self.annotation_lines   = annotation_lines
-        self.clean_lines = clean_lines
+        if list_path and dataset_root:
+            self.annotation_lines, self.clean_lines, _ = build_voc_annotation_lines(
+                list_path=list_path,
+                dataset_root=dataset_root,
+                class_names=class_names,
+                clean_root=clean_root,
+            )
+        else:
+            if annotation_lines is None:
+                raise ValueError("annotation_lines cannot be None when list_path is not provided.")
+            self.annotation_lines = annotation_lines
+            self.clean_lines = clean_lines if clean_lines is not None else annotation_lines
+
+        if len(self.annotation_lines) != len(self.clean_lines):
+            raise ValueError("annotation_lines and clean_lines must be the same length.")
         self.input_shape        = input_shape
         self.num_classes        = num_classes
         self.anchors            = anchors

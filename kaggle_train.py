@@ -1,7 +1,8 @@
 """
-RDFNet Kaggle Training Script with Resume Support
+RDFNet Kaggle Training Script (VOC_FOG_12K_Upload + RTTS eval)
 """
 import datetime
+import json
 import os
 import shutil
 from functools import partial
@@ -17,17 +18,29 @@ from nets.model import YoloBody
 from nets.yolo_training import (ModelEMA, YOLOLoss, get_lr_scheduler,
                                 set_optimizer_lr, weights_init)
 from utils.callbacks import EvalCallback, LossHistory
-from utils.dataloader import YoloDataset, yolo_dataset_collate
+from utils.dataloader import YoloDataset, yolo_dataset_collate, build_voc_annotation_lines
 from utils.utils import (get_anchors, get_classes,
                          seed_everything, show_config, worker_init_fn)
 from utils.utils_fit import fit_one_epoch
 
 # ============= KAGGLE CONFIG =============
-# Dataset paths (read-only)
-VOC2007_FOG = '/kaggle/input/foggy-voc/VOC_FOG_12K_Upload/VOC_FOG_12K_Upload/VOC2007_FOG'
-VOC2007_ANN = '/kaggle/input/foggy-voc/VOC_FOG_12K_Upload/VOC_FOG_12K_Upload/VOC2007_Annotations'
-VOC2012_FOG = '/kaggle/input/foggy-voc/VOC_FOG_12K_Upload/VOC_FOG_12K_Upload/VOC2012_FOG'
-VOC2012_ANN = '/kaggle/input/foggy-voc/VOC_FOG_12K_Upload/VOC_FOG_12K_Upload/VOC2012_Annotations'
+# Checklist:
+# - Generate split: python tools/make_vocfog_split.py --dataset_root /kaggle/input/.../VOC_FOG_12K_Upload
+# - Run baseline_pixel: set method_name="baseline_pixel"
+# - Run ours_feature: set method_name="ours_feature"
+# - Confirm RTTS is test-only: use_rtts_for_training must stay False
+
+# User-specified paths (read-only input)
+dataset_root = "/kaggle/input/..."  # user will set
+checkpoint_path = "/kaggle/input/datasets/mdhabibourrahman/rdfnet-pth/RDFNet.pth"
+
+# Experiment config
+training_epochs = 80
+method_name = "baseline_pixel"  # or "ours_feature"
+use_rtts_for_training = False
+alpha_feat = 0.5
+lambda_pixel = 0.1
+feat_warmup_epochs = 10
 
 # Output directory (writable)
 OUTPUT_DIR = '/kaggle/working'
@@ -48,11 +61,11 @@ anchors_mask = [[6, 7, 8], [3, 4, 5], [0, 1, 2]]
 input_shape = [640, 640]
 
 # Training config
-Freeze_Epoch = 100
+Freeze_Epoch = 0
 Freeze_batch_size = 16
-UnFreeze_Epoch = 300
+UnFreeze_Epoch = training_epochs
 Unfreeze_batch_size = 8
-Freeze_Train = True
+Freeze_Train = False
 
 # Optimizer
 Init_lr = 1e-2
@@ -69,35 +82,6 @@ eval_flag = True
 eval_period = 10
 num_workers = 2  # Kaggle has limited workers
 
-# Annotation paths
-train_annotation_path = os.path.join(OUTPUT_DIR, 'train_12k.txt')
-val_annotation_path = os.path.join(OUTPUT_DIR, 'val_12k.txt')
-
-
-def find_latest_checkpoint():
-    """Find the latest checkpoint"""
-    checkpoints = []
-    
-    for search_dir in [save_dir, CHECKPOINT_DIR]:
-        if not os.path.exists(search_dir):
-            continue
-        for f in os.listdir(search_dir):
-            if f.startswith('ep') and f.endswith('.pth'):
-                try:
-                    epoch = int(f.split('-')[0][2:])
-                    checkpoints.append((epoch, os.path.join(search_dir, f)))
-                except:
-                    pass
-            elif f == 'last_epoch_weights.pth':
-                # Try to determine epoch from training state
-                checkpoints.append((0, os.path.join(search_dir, f)))
-    
-    if checkpoints:
-        checkpoints.sort(key=lambda x: x[0], reverse=True)
-        return checkpoints[0]
-    return None, None
-
-
 def backup_checkpoint(local_path):
     """Backup checkpoint to checkpoint directory"""
     if not os.path.exists(local_path):
@@ -108,87 +92,23 @@ def backup_checkpoint(local_path):
     print(f"💾 Backed up: {filename}")
 
 
-def generate_annotations():
-    """Generate training annotation files from VOC datasets"""
-    import xml.etree.ElementTree as ET
-    
-    print("\n📝 Generating annotation files...")
-    
-    train_lines = []
-    val_lines = []
-    
-    datasets = [
-        (VOC2007_FOG, VOC2007_ANN, 'VOC2007'),
-        (VOC2012_FOG, VOC2012_ANN, 'VOC2012'),
-    ]
-    
-    for fog_dir, ann_dir, name in datasets:
-        if not os.path.exists(fog_dir) or not os.path.exists(ann_dir):
-            print(f"⚠️ Skipping {name}: directory not found")
-            continue
-        
-        # Get all images
-        images = [f for f in os.listdir(fog_dir) if f.endswith(('.jpg', '.png', '.jpeg'))]
-        print(f"  {name}: {len(images)} images")
-        
-        for img_name in images:
-            img_path = os.path.join(fog_dir, img_name)
-            xml_name = os.path.splitext(img_name)[0] + '.xml'
-            xml_path = os.path.join(ann_dir, xml_name)
-            
-            if not os.path.exists(xml_path):
-                continue
-            
-            # Parse XML
-            try:
-                tree = ET.parse(xml_path)
-                root = tree.getroot()
-                
-                boxes = []
-                for obj in root.iter('object'):
-                    difficult = 0
-                    if obj.find('difficult') is not None:
-                        difficult = int(obj.find('difficult').text)
-                    
-                    cls_name = obj.find('name').text
-                    if cls_name not in VOC_CLASSES:
-                        continue
-                    
-                    cls_id = VOC_CLASSES.index(cls_name)
-                    bbox = obj.find('bndbox')
-                    box = [
-                        int(float(bbox.find('xmin').text)),
-                        int(float(bbox.find('ymin').text)),
-                        int(float(bbox.find('xmax').text)),
-                        int(float(bbox.find('ymax').text)),
-                        cls_id
-                    ]
-                    boxes.append(','.join(map(str, box)))
-                
-                if boxes:
-                    line = img_path + ' ' + ' '.join(boxes)
-                    train_lines.append(line)
-            except Exception as e:
-                continue
-    
-    # Split: 90% train, 10% val
-    import random
-    random.shuffle(train_lines)
-    split_idx = int(len(train_lines) * 0.9)
-    val_lines = train_lines[split_idx:]
-    train_lines = train_lines[:split_idx]
-    
-    # Write files
-    with open(train_annotation_path, 'w') as f:
-        f.write('\n'.join(train_lines))
-    
-    with open(val_annotation_path, 'w') as f:
-        f.write('\n'.join(val_lines))
-    
-    print(f"✅ Train annotations: {len(train_lines)}")
-    print(f"✅ Val annotations: {len(val_lines)}")
-    
-    return len(train_lines), len(val_lines)
+def validate_dataset_paths():
+    if use_rtts_for_training:
+        raise ValueError("use_rtts_for_training must be False: RTTS is test-only.")
+
+    voc_root = os.path.join(dataset_root, "VOC_FOG_12K_Upload")
+    rtts_root = os.path.join(dataset_root, "RTTS")
+
+    train_list = os.path.join(voc_root, "ImageSets", "Main", "train.txt")
+    val_list = os.path.join(voc_root, "ImageSets", "Main", "val.txt")
+    test_list = os.path.join(voc_root, "ImageSets", "Main", "test.txt")
+    rtts_test_list = os.path.join(rtts_root, "ImageSets", "Main", "test.txt")
+
+    for p in [voc_root, rtts_root, train_list, val_list, test_list, rtts_test_list]:
+        if not os.path.exists(p):
+            raise FileNotFoundError(f"Missing required path: {p}")
+
+    return voc_root, rtts_root, train_list, val_list, test_list, rtts_test_list
 
 
 if __name__ == "__main__":
@@ -223,42 +143,46 @@ if __name__ == "__main__":
     # Setup directories
     os.makedirs(save_dir, exist_ok=True)
     os.makedirs(CHECKPOINT_DIR, exist_ok=True)
-    
-    # Generate annotation files if they don't exist
-    if not os.path.exists(train_annotation_path) or not os.path.exists(val_annotation_path):
-        generate_annotations()
-    
-    # Check for resume
+
+    voc_root, rtts_root, train_list_path, val_list_path, test_list_path, rtts_test_list_path = validate_dataset_paths()
+
+    print("\n" + "=" * 60)
+    print("🧾 Experiment Summary")
+    print(f"Method: {method_name}")
+    print(f"Epochs: {training_epochs}")
+    print(f"Checkpoint: {checkpoint_path}")
+    print(f"Dataset root: {dataset_root}")
+    print(f"Train list: {train_list_path}")
+    print(f"Val list: {val_list_path}")
+    print(f"VOC_FOG test list: {test_list_path}")
+    print(f"RTTS test list: {rtts_test_list_path}")
+    print("=" * 60)
+
+    if method_name not in ["baseline_pixel", "ours_feature"]:
+        raise ValueError(f"Invalid method_name: {method_name}")
+
     resume_epoch = 0
-    latest_epoch, latest_ckpt = find_latest_checkpoint()
-    
-    if latest_ckpt and os.path.exists(latest_ckpt):
-        print(f"\n📌 Found checkpoint: {os.path.basename(latest_ckpt)}")
-        print(f"📌 Resuming from epoch: {latest_epoch}")
-        resume_epoch = latest_epoch
-        checkpoint_path = latest_ckpt
-    else:
-        print("\n📭 No checkpoint found. Starting fresh training.")
-        checkpoint_path = model_path if os.path.exists(model_path) else None
-    
-    # Load weights
-    if checkpoint_path and os.path.exists(checkpoint_path):
-        print(f"📦 Loading weights: {checkpoint_path}")
-        model_dict = model.state_dict()
-        pretrained_dict = torch.load(checkpoint_path, map_location=device)
-        
-        load_key, no_load_key, temp_dict = [], [], {}
-        for k, v in pretrained_dict.items():
-            if k in model_dict.keys() and np.shape(model_dict[k]) == np.shape(v):
-                temp_dict[k] = v
-                load_key.append(k)
-            else:
-                no_load_key.append(k)
-        
-        model_dict.update(temp_dict)
-        model.load_state_dict(model_dict)
-        print(f"✅ Loaded: {len(load_key)} keys")
-        print(f"⚠️ Skipped: {len(no_load_key)} keys")
+
+    # Load weights (required)
+    if not checkpoint_path or not os.path.exists(checkpoint_path):
+        raise FileNotFoundError(f"Checkpoint not found: {checkpoint_path}")
+
+    print(f"📦 Loading weights: {checkpoint_path}")
+    model_dict = model.state_dict()
+    pretrained_dict = torch.load(checkpoint_path, map_location=device)
+
+    load_key, no_load_key, temp_dict = [], [], {}
+    for k, v in pretrained_dict.items():
+        if k in model_dict.keys() and np.shape(model_dict[k]) == np.shape(v):
+            temp_dict[k] = v
+            load_key.append(k)
+        else:
+            no_load_key.append(k)
+
+    model_dict.update(temp_dict)
+    model.load_state_dict(model_dict)
+    print(f"✅ Loaded: {len(load_key)} keys")
+    print(f"⚠️ Skipped: {len(no_load_key)} keys")
     
     # Loss function
     yolo_loss = YOLOLoss(anchors, num_classes, input_shape, anchors_mask)
@@ -285,23 +209,25 @@ if __name__ == "__main__":
     
     ema = ModelEMA(model_train)
     
-    # Load annotations
-    with open(train_annotation_path, encoding='utf-8') as f:
-        train_lines = f.readlines()
-    with open(val_annotation_path, encoding='utf-8') as f:
-        val_lines = f.readlines()
-    
-    clear_lines = train_lines.copy()
+    # Load annotations from VOC lists
+    train_lines, clean_lines, _ = build_voc_annotation_lines(train_list_path, voc_root, class_names)
+    val_lines, _, _ = build_voc_annotation_lines(val_list_path, voc_root, class_names)
+    test_lines, _, _ = build_voc_annotation_lines(test_list_path, voc_root, class_names)
+    rtts_test_lines, _, _ = build_voc_annotation_lines(rtts_test_list_path, rtts_root, class_names)
+
+    if any("RTTS" in line for line in train_lines) or any("RTTS" in line for line in val_lines):
+        raise RuntimeError("RTTS data detected in train/val annotations. RTTS must be test-only.")
+
     num_train = len(train_lines)
     num_val = len(val_lines)
-    
+
     print(f"\n📊 Training samples: {num_train}")
     print(f"📊 Validation samples: {num_val}")
     
     # Show config
     show_config(
         classes_path=classes_path, anchors_path=anchors_path,
-        anchors_mask=anchors_mask, model_path=checkpoint_path or model_path,
+        anchors_mask=anchors_mask, model_path=checkpoint_path,
         input_shape=input_shape, Init_Epoch=resume_epoch,
         Freeze_Epoch=Freeze_Epoch, UnFreeze_Epoch=UnFreeze_Epoch,
         Freeze_batch_size=Freeze_batch_size, Unfreeze_batch_size=Unfreeze_batch_size,
@@ -360,7 +286,7 @@ if __name__ == "__main__":
     
     # Dataset
     train_dataset = YoloDataset(
-        train_lines, clear_lines, input_shape, num_classes,
+        train_lines, clean_lines, input_shape, num_classes,
         anchors, anchors_mask, epoch_length=UnFreeze_Epoch, train=True
     )
     
@@ -423,7 +349,11 @@ if __name__ == "__main__":
             model_train, model, ema, yolo_loss, loss_history,
             eval_callback, optimizer, epoch, epoch_step, gen,
             UnFreeze_Epoch, Cuda, fp16, scaler, save_period,
-            save_dir, 0
+            save_dir, 0,
+            method_name=method_name,
+            alpha_feat=alpha_feat,
+            lambda_pixel=lambda_pixel,
+            feat_warmup_epochs=feat_warmup_epochs
         )
         
         # Backup checkpoint
@@ -448,5 +378,56 @@ if __name__ == "__main__":
     print(f"📁 Checkpoints saved to: {CHECKPOINT_DIR}")
     print("📥 Download from Kaggle Output tab")
     print("=" * 60)
-    
+
+    # Final evaluation on internal VOC_FOG test and external RTTS test
+    model_eval = ema.ema if ema else model
+    model_eval.eval()
+
+    internal_out = os.path.join(save_dir, "map_internal_vocfog_test")
+    external_out = os.path.join(save_dir, "map_external_rtts_test")
+
+    internal_callback = EvalCallback(
+        model_eval, input_shape, anchors, anchors_mask, class_names,
+        num_classes, test_lines, log_dir, Cuda,
+        map_out_path=internal_out, eval_flag=True, period=1, keep_map_out=True
+    )
+    internal_callback.on_epoch_end(UnFreeze_Epoch, model_eval)
+    internal_map = internal_callback.maps[-1]
+
+    external_callback = EvalCallback(
+        model_eval, input_shape, anchors, anchors_mask, class_names,
+        num_classes, rtts_test_lines, log_dir, Cuda,
+        map_out_path=external_out, eval_flag=True, period=1, keep_map_out=True
+    )
+    external_callback.on_epoch_end(UnFreeze_Epoch, model_eval)
+    external_map = external_callback.maps[-1]
+
+    best_val_map = None
+    best_epoch = None
+    if eval_flag and len(eval_callback.maps) > 1:
+        val_maps = eval_callback.maps[1:]
+        val_epochs = eval_callback.epoches[1:]
+        best_val_map = max(val_maps)
+        best_epoch = val_epochs[val_maps.index(best_val_map)]
+
+    summary = {
+        "method_name": method_name,
+        "epochs": training_epochs,
+        "checkpoint": checkpoint_path,
+        "alpha_feat": alpha_feat,
+        "lambda_pixel": lambda_pixel,
+        "best_val_map": best_val_map,
+        "best_epoch": best_epoch,
+        "internal_vocfog_test_map": internal_map,
+        "external_rtts_map": external_map,
+        "seed": seed,
+        "timestamp": datetime.datetime.now().isoformat(),
+    }
+
+    summary_path = os.path.join(save_dir, f"experiment_summary_{time_str}.json")
+    with open(summary_path, "w", encoding="utf-8") as f:
+        json.dump(summary, f, indent=2)
+
+    print(f"🧾 Summary saved: {summary_path}")
+
     loss_history.writer.close()

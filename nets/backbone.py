@@ -84,11 +84,12 @@ class Backbone(nn.Module):
             Multi_Concat_Block(transition_channels * 16, block_channels * 16, transition_channels * 32, n=n, ids=ids),
         )
 
-    def forward(self, x):
-        if self.training:
-            # Split hazy and clear images (each half of the batch)
-            batch_size = x.shape[0] // 2
-            x, clear_x = x.split((batch_size, batch_size), dim=0)  
+    def forward(self, x, det_only=False):
+        if self.training and not det_only:
+            # Split hazy and clear images (each half of the batch) if paired batch is provided
+            if x.shape[0] % 2 == 0:
+                batch_size = x.shape[0] // 2
+                x, _ = x.split((batch_size, batch_size), dim=0)
         x = self.stem(x)
         x = self.dark2(x)
         f1 = x
@@ -100,6 +101,9 @@ class Backbone(nn.Module):
         f3 = x
         x = self.dark5(x)
         feat3 = x
+        if det_only:
+            return feat1, feat2, feat3
+
         dehazing = self.dehze(f1, f2, f3)
 
         if self.training:
