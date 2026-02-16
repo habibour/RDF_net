@@ -64,7 +64,7 @@ weight_decay = 5e-4
 lr_decay_type = "cos"
 
 # ============= SAVE =============
-save_period = 10
+save_period = 2
 save_dir = 'logs'
 eval_flag = True
 eval_period = 10
