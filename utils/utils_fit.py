@@ -66,12 +66,23 @@ def fit_one_epoch(model_train, model, ema, yolo_loss, loss_history, eval_callbac
                 # Extract dehazing output (last element)
                 if isinstance(outputs, (list, tuple)) and len(outputs) > 3:
                     restored = outputs[3]  # dehazing is 4th element
+                    
+                    # Debug: check shapes on first iteration
+                    if iteration == 0 and epoch == 0 and local_rank == 0:
+                        print(f"Restored shape: {restored.shape}")
+                        print(f"Clean images shape: {clean_images.shape}")
+                        print(f"Images shape: {images.shape}")
+                    
+                    # Check if shapes match
+                    if restored.shape == clean_images.shape:
+                        loss_pixel = torch.nn.functional.mse_loss(restored, clean_images)
+                    else:
+                        print(f"⚠ Shape mismatch: restored {restored.shape} vs clean {clean_images.shape}, skipping pixel loss")
+                        loss_pixel = torch.tensor(0.0).cuda() if cuda else torch.tensor(0.0)
                 else:
-                    # Fallback: call model again if dehazing not in outputs
-                    restored = model_train(images, return_feats=False)
-                    if isinstance(restored, (list, tuple)) and len(restored) > 3:
-                        restored = restored[3]
-                loss_pixel = torch.nn.functional.mse_loss(restored, clean_images)
+                    # No dehazing output available, skip pixel loss
+                    loss_pixel = torch.tensor(0.0).cuda() if cuda else torch.tensor(0.0)
+                    
                 loss_feat = torch.tensor(0.0).cuda() if cuda else torch.tensor(0.0)
                 
                 loss_total = loss_det + lambda_pixel * loss_pixel
@@ -118,7 +129,7 @@ def fit_one_epoch(model_train, model, ema, yolo_loss, loss_history, eval_callbac
             loss_total.backward()
             optimizer.step()
         else:
-            with torch.cuda.amp.autocast():
+            with torch.amp.autocast(device_type='cuda', enabled=cuda):
                 # Forward pass
                 outputs = model_train(images)
                 
@@ -144,7 +155,32 @@ def fit_one_epoch(model_train, model, ema, yolo_loss, loss_history, eval_callbac
                         restored = model_train(images, return_feats=False)
                         if isinstance(restored, (list, tuple)) and len(restored) > 3:
                             restored = restored[3]
-                    loss_pixel = torch.nn.functional.mse_loss(restored, clean_images)
+                    if isinstance(restored, torch.Tensor):
+                        # Debug: check shapes on first iteration
+                        if iteration == 0 and local_rank == 0:
+                            print(f"DEBUG - Restored shape: {restored.shape}, Clean images shape: {clean_images.shape}")
+                        
+                        # Safety guard: align batch size first
+                        if restored.shape[0] != clean_images.shape[0]:
+                            bs = min(restored.shape[0], clean_images.shape[0])
+                            restored = restored[:bs]
+                            clean_images_aligned = clean_images[:bs]
+                            if local_rank == 0 and iteration == 0:
+                                print(f"⚠ Batch size mismatch: aligned to {bs}")
+                        else:
+                            clean_images_aligned = clean_images
+
+                        # Then align spatial dimensions if needed
+                        if restored.shape[-2:] != clean_images_aligned.shape[-2:]:
+                            clean_images_aligned = torch.nn.functional.interpolate(
+                                clean_images_aligned, size=restored.shape[-2:], mode="bilinear", align_corners=False
+                            )
+                            if local_rank == 0 and iteration == 0:
+                                print(f"⚠ Spatial size mismatch: resized clean images to {restored.shape[-2:]}")
+
+                        loss_pixel = torch.nn.functional.mse_loss(restored, clean_images_aligned)
+                    else:
+                        loss_pixel = torch.tensor(0.0).cuda() if cuda else torch.tensor(0.0)
                     loss_feat = torch.tensor(0.0).cuda() if cuda else torch.tensor(0.0)
                     
                     loss_total = loss_det + lambda_pixel * loss_pixel

@@ -64,6 +64,9 @@ class Backbone(nn.Module):
     def __init__(self, transition_channels, block_channels, n):
         super().__init__()
         ids = [-1, -2, -3, -4]
+        # Keep disabled by default. Enable only when the training input is
+        # explicitly a concatenated [fog_batch, clean_batch].
+        self.split_paired_batch = False
         
         self.stem = Conv(3, transition_channels * 2, 3, 2)
         self.dehze = LMDNet()
@@ -85,7 +88,7 @@ class Backbone(nn.Module):
         )
 
     def forward(self, x, det_only=False):
-        if self.training and not det_only:
+        if self.training and not det_only and self.split_paired_batch:
             # Split hazy and clear images (each half of the batch) if paired batch is provided
             if x.shape[0] % 2 == 0:
                 batch_size = x.shape[0] // 2
