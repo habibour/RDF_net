@@ -49,26 +49,10 @@ def fit_one_epoch(model_train, model, ema, yolo_loss, loss_history, eval_callbac
             # Forward pass
             outputs = model_train(images)
             
-            # Debug: print output structure on first iteration
-            if iteration == 0 and epoch == 0 and local_rank == 0:
-                print(f"Model output type: {type(outputs)}")
-                if isinstance(outputs, dict):
-                    print(f"Dict keys: {outputs.keys()}")
-                    for k, v in outputs.items():
-                        if isinstance(v, (list, tuple)):
-                            print(f"  {k}: list/tuple of length {len(v)}")
-                        else:
-                            print(f"  {k}: {type(v)}")
-                elif isinstance(outputs, (list, tuple)):
-                    print(f"List/tuple of length {len(outputs)}")
-            
-            # Extract predictions from dict if needed
-            if isinstance(outputs, dict):
-                # Try common keys for YOLO predictions
-                predictions = outputs.get('out', outputs.get('predictions', outputs.get('pred', None)))
-                if predictions is None:
-                    # If no standard key found, assume dict is just the predictions
-                    predictions = list(outputs.values()) if len(outputs) == 3 else outputs
+            # Model returns list [out0, out1, out2] or [out0, out1, out2, dehazing]
+            # Extract only first 3 for YOLO detection
+            if isinstance(outputs, (list, tuple)):
+                predictions = outputs[:3] if len(outputs) >= 3 else outputs
             else:
                 predictions = outputs
             
@@ -132,13 +116,10 @@ def fit_one_epoch(model_train, model, ema, yolo_loss, loss_history, eval_callbac
                 # Forward pass
                 outputs = model_train(images)
                 
-                # Extract predictions from dict if needed
-                if isinstance(outputs, dict):
-                    # Try common keys for YOLO predictions
-                    predictions = outputs.get('out', outputs.get('predictions', outputs.get('pred', None)))
-                    if predictions is None:
-                        # If no standard key found, assume dict is just the predictions
-                        predictions = list(outputs.values()) if len(outputs) == 3 else outputs
+                # Model returns list [out0, out1, out2] or [out0, out1, out2, dehazing]
+                # Extract only first 3 for YOLO detection
+                if isinstance(outputs, (list, tuple)):
+                    predictions = outputs[:3] if len(outputs) >= 3 else outputs
                 else:
                     predictions = outputs
                 
@@ -221,9 +202,9 @@ def fit_one_epoch(model_train, model, ema, yolo_loss, loss_history, eval_callbac
             optimizer.zero_grad()
             outputs = model_train(images)
             
-            # Extract predictions from dict if needed
-            if isinstance(outputs, dict):
-                predictions = outputs.get('predictions', outputs.get('pred', outputs))
+            # Model returns list [out0, out1, out2] (no dehazing in eval mode)
+            if isinstance(outputs, (list, tuple)):
+                predictions = outputs[:3] if len(outputs) >= 3 else outputs
             else:
                 predictions = outputs
             
