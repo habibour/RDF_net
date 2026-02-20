@@ -49,8 +49,14 @@ def fit_one_epoch(model_train, model, ema, yolo_loss, loss_history, eval_callbac
             # Forward pass
             outputs = model_train(images)
             
+            # Extract predictions from dict if needed
+            if isinstance(outputs, dict):
+                predictions = outputs.get('predictions', outputs.get('pred', outputs))
+            else:
+                predictions = outputs
+            
             # Detection loss
-            loss_det = yolo_loss(outputs, targets, images)
+            loss_det = yolo_loss(predictions, targets, images)
             
             # Method-specific loss computation
             if method_name == "baseline_pixel":
@@ -109,8 +115,14 @@ def fit_one_epoch(model_train, model, ema, yolo_loss, loss_history, eval_callbac
                 # Forward pass
                 outputs = model_train(images)
                 
+                # Extract predictions from dict if needed
+                if isinstance(outputs, dict):
+                    predictions = outputs.get('predictions', outputs.get('pred', outputs))
+                else:
+                    predictions = outputs
+                
                 # Detection loss
-                loss_det = yolo_loss(outputs, targets, images)
+                loss_det = yolo_loss(predictions, targets, images)
                 
                 # Method-specific loss computation
                 if method_name == "baseline_pixel":
@@ -187,7 +199,14 @@ def fit_one_epoch(model_train, model, ema, yolo_loss, loss_history, eval_callbac
 
             optimizer.zero_grad()
             outputs = model_train(images)
-            loss_value = yolo_loss(outputs, targets, images)
+            
+            # Extract predictions from dict if needed
+            if isinstance(outputs, dict):
+                predictions = outputs.get('predictions', outputs.get('pred', outputs))
+            else:
+                predictions = outputs
+            
+            loss_value = yolo_loss(predictions, targets, images)
 
             val_loss += loss_value.item()
             
