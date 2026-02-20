@@ -50,7 +50,7 @@ def fit_one_epoch(model_train, model, ema, yolo_loss, loss_history, eval_callbac
             outputs = model_train(images)
             
             # Detection loss
-            loss_det = yolo_loss(outputs, targets)
+            loss_det = yolo_loss(outputs, targets, images)
             
             # Method-specific loss computation
             if method_name == "baseline_pixel":
@@ -110,7 +110,7 @@ def fit_one_epoch(model_train, model, ema, yolo_loss, loss_history, eval_callbac
                 outputs = model_train(images)
                 
                 # Detection loss
-                loss_det = yolo_loss(outputs, targets)
+                loss_det = yolo_loss(outputs, targets, images)
                 
                 # Method-specific loss computation
                 if method_name == "baseline_pixel":
@@ -187,7 +187,7 @@ def fit_one_epoch(model_train, model, ema, yolo_loss, loss_history, eval_callbac
 
             optimizer.zero_grad()
             outputs = model_train(images)
-            loss_value = yolo_loss(outputs, targets)
+            loss_value = yolo_loss(outputs, targets, images)
 
             val_loss += loss_value.item()
             
