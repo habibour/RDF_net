@@ -42,7 +42,7 @@ voc_segmentation_object_path = "/kaggle/input/datasets/mdhabibourrahman/voc-2012
 rtts_root = "/kaggle/input/datasets/mdhabibourrahman/foggy-voc/RTTS"
 
 # TRAINING CONFIGURATION (FIXED)
-method_name = "baseline_pixel"  # Options: "baseline_pixel" or "ours_feature"
+method_name = "ours_feature"  # Options: "baseline_pixel" or "ours_feature"
 epochs = 80  # FIXED - ignore CLI overrides
 lambda_pixel = 0.1
 alpha_feat = 0.5
