@@ -191,17 +191,13 @@ def fit_one_epoch(model_train, model, ema, yolo_loss, loss_history, eval_callbac
                 elif method_name == "ours_feature":
                     # Get features for loss computation
                     with torch.no_grad():
-                        clean_feats = model(clean_images, return_feats=True)
-                        if not isinstance(clean_feats, (list, tuple)):
-                            clean_feats = [clean_feats]
+                        _, clean_feats = model(clean_images, return_feats=True)
                     
-                    # Get restored features
-                    restored_feats = model_train(images, return_feats=True)
-                    if not isinstance(restored_feats, (list, tuple)):
-                        restored_feats = [restored_feats]
+                    # Get restored features (from foggy images)
+                    _, restored_feats = model_train(images, return_feats=True)
                     
-                    # Feature-level L1 loss across all feature levels
-                    loss_feat = sum(torch.nn.functional.l1_loss(restored_feats[i], clean_feats[i].detach()) 
+                    # Feature-level L1 loss across all feature levels (P3, P4, P5)
+                    loss_feat = sum(torch.nn.functional.l1_loss(restored_feats[i], clean_feats[i]) 
                                    for i in range(len(restored_feats)))
                     
                     # Warmup schedule for feature loss
