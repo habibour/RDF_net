@@ -62,9 +62,15 @@ def fit_one_epoch(model_train, model, ema, yolo_loss, loss_history, eval_callbac
             # Method-specific loss computation
             if method_name == "baseline_pixel":
                 # Pixel-level MSE loss between restored and clean images
-                restored = model_train(images, return_feats=False)  # Get restored image
-                if isinstance(restored, tuple):
-                    restored = restored[0]  # Take first element if tuple
+                # Model returns [out0, out1, out2, dehazing] during training
+                # Extract dehazing output (last element)
+                if isinstance(outputs, (list, tuple)) and len(outputs) > 3:
+                    restored = outputs[3]  # dehazing is 4th element
+                else:
+                    # Fallback: call model again if dehazing not in outputs
+                    restored = model_train(images, return_feats=False)
+                    if isinstance(restored, (list, tuple)) and len(restored) > 3:
+                        restored = restored[3]
                 loss_pixel = torch.nn.functional.mse_loss(restored, clean_images)
                 loss_feat = torch.tensor(0.0).cuda() if cuda else torch.tensor(0.0)
                 
@@ -129,9 +135,15 @@ def fit_one_epoch(model_train, model, ema, yolo_loss, loss_history, eval_callbac
                 # Method-specific loss computation
                 if method_name == "baseline_pixel":
                     # Pixel-level MSE loss between restored and clean images
-                    restored = model_train(images, return_feats=False)  # Get restored image
-                    if isinstance(restored, tuple):
-                        restored = restored[0]  # Take first element if tuple
+                    # Model returns [out0, out1, out2, dehazing] during training
+                    # Extract dehazing output (last element)
+                    if isinstance(outputs, (list, tuple)) and len(outputs) > 3:
+                        restored = outputs[3]  # dehazing is 4th element
+                    else:
+                        # Fallback: call model again if dehazing not in outputs
+                        restored = model_train(images, return_feats=False)
+                        if isinstance(restored, (list, tuple)) and len(restored) > 3:
+                            restored = restored[3]
                     loss_pixel = torch.nn.functional.mse_loss(restored, clean_images)
                     loss_feat = torch.tensor(0.0).cuda() if cuda else torch.tensor(0.0)
                     
