@@ -621,7 +621,7 @@ def main():
     
     # Optimizer and scaler
     optimizer = optim.SGD(model.parameters(), lr=init_lr, momentum=0.937, weight_decay=5e-4)
-    lr_scheduler = get_lr_scheduler("cos", init_lr, init_lr * 0.01, epochs)
+    lr_scheduler_func = get_lr_scheduler("cos", init_lr, init_lr * 0.01, epochs)
     
     # FP16 scaler
     if fp16:
@@ -647,7 +647,7 @@ def main():
                      lambda_pixel=lambda_pixel, feat_warmup_epochs=feat_warmup_epochs)
         
         # Update learning rate
-        lr_scheduler.step()
+        set_optimizer_lr(optimizer, lr_scheduler_func, epoch)
         
         # Evaluation (every 10 epochs)
         if (epoch + 1) % 10 == 0:
