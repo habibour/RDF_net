@@ -144,10 +144,11 @@ def sanity_check_pairing():
     
     # Copy train.txt and val.txt to working directory
     if os.path.exists(train_txt_src) and os.path.exists(val_txt_src):
-        print("   ✓ Copying train.txt and val.txt to working directory")
-        import shutil
+        print(f"   ✓ Copying splits to working directory: {splits_work_dir}")
         shutil.copy2(train_txt_src, train_txt)
         shutil.copy2(val_txt_src, val_txt)
+        print(f"   ✓ train.txt: {train_txt}")
+        print(f"   ✓ val.txt: {val_txt}")
     elif os.path.exists(trainval_txt):
         print("   ℹ Splitting trainval.txt -> train.txt (90%) + val.txt (10%)")
         create_train_val_splits(trainval_txt, train_txt, val_txt, seed=seed)
@@ -156,7 +157,11 @@ def sanity_check_pairing():
     
     # Create test.txt if needed
     if not os.path.exists(test_txt_src):
-        print("   ℹ test.txt not found, creating from val.txt (50% split)")
+        print(f"   ℹ test.txt not found, creating from val.txt: {val_txt}")
+        # Verify val.txt is in working directory
+        if not val_txt.startswith(splits_work_dir):
+            raise RuntimeError(f"val.txt path error: {val_txt} not in {splits_work_dir}")
+        
         # Split val.txt into val and test
         with open(val_txt, 'r') as f:
             val_ids = [line.strip() for line in f if line.strip()]
@@ -179,7 +184,6 @@ def sanity_check_pairing():
         print(f"   ✓ Updated val.txt with {len(new_val_ids)} samples")
     else:
         print("   ✓ Copying test.txt to working directory")
-        import shutil
         shutil.copy2(test_txt_src, test_txt)
     
     # Check 4: Sample pairing validation (first 30 samples with fog)
