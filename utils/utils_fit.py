@@ -30,7 +30,7 @@ def fit_one_epoch(model_train, model, ema, yolo_loss, loss_history, eval_callbac
         print(f"   Lambda pixel: {lambda_pixel}")
         print(f"   Feat warmup epochs: {feat_warmup_epochs}")
         print('Start Train')
-        pbar = tqdm(total=epoch_step,desc=f'Epoch {epoch + 1}/{Epoch}',postfix=dict,mininterval=2.0,miniters=50)
+        print(f"Epoch {epoch + 1}/{Epoch} - Training on {epoch_step} batches")
     
     model_train.train()
     for iteration, batch in enumerate(gen):
@@ -224,18 +224,18 @@ def fit_one_epoch(model_train, model, ema, yolo_loss, loss_history, eval_callbac
         loss_feat_sum += loss_feat.item()
         
         if local_rank == 0:
-            pbar.set_postfix(**{'loss_det' : loss_det_sum / (iteration + 1),
-                                'loss_pixel': loss_pixel_sum / (iteration + 1),
-                                'loss_feat': loss_feat_sum / (iteration + 1),
-                                'loss_total': loss_total_sum / (iteration + 1),
-                                'lr'        : get_lr(optimizer)})
-            pbar.update(1)
+            # Print progress every 100 iterations
+            if (iteration + 1) % 100 == 0 or (iteration + 1) == epoch_step:
+                print(f"  [{iteration + 1}/{epoch_step}] loss_det={loss_det_sum / (iteration + 1):.4f}, "
+                      f"loss_pixel={loss_pixel_sum / (iteration + 1):.4f}, "
+                      f"loss_feat={loss_feat_sum / (iteration + 1):.4f}, "
+                      f"loss_total={loss_total_sum / (iteration + 1):.4f}, "
+                      f"lr={get_lr(optimizer):.6f}")
 
     if local_rank == 0:
-        pbar.close()
         print('Finish Train')
         print('Start Validation')
-        pbar = tqdm(total=epoch_step_val, desc=f'Epoch {epoch + 1}/{Epoch}',postfix=dict,mininterval=2.0,miniters=20)
+        print(f"Epoch {epoch + 1}/{Epoch} - Validating on {epoch_step_val} batches")
 
     model_train.eval()
     for iteration, batch in enumerate(gen_val):
@@ -261,11 +261,11 @@ def fit_one_epoch(model_train, model, ema, yolo_loss, loss_history, eval_callbac
             val_loss += loss_value.item()
             
         if local_rank == 0:
-            pbar.set_postfix(**{'val_loss': val_loss / (iteration + 1)})
-            pbar.update(1)
+            # Print validation progress every 50 iterations
+            if (iteration + 1) % 50 == 0 or (iteration + 1) == epoch_step_val:
+                print(f"  [{iteration + 1}/{epoch_step_val}] val_loss={val_loss / (iteration + 1):.4f}")
     
     if local_rank == 0:
-        pbar.close()
         print('Finish Validation')
         
         loss_history.append_loss(epoch + 1, loss_total_sum / epoch_step, val_loss / epoch_step_val)
