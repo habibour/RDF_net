@@ -127,11 +127,10 @@ def sanity_check_pairing():
     if not os.path.exists(sets_main):
         raise RuntimeError(f"Missing ImageSets/Main: {sets_main}")
     
-    # Check 3: Build/validate train/val/test splits
-    print("✅ Check 3: Train/val/test splits...")
+    # Check 3: Build 80-10-10 train/val/test splits with fog filtering
+    print("✅ Check 3: Creating 80-10-10 train/val/test splits...")
     train_txt_src = os.path.join(sets_main, "train.txt")
     val_txt_src = os.path.join(sets_main, "val.txt")
-    test_txt_src = os.path.join(sets_main, "test.txt")
     trainval_txt = os.path.join(sets_main, "trainval.txt")
     
     # Create working directory for splits (Kaggle input is read-only)
@@ -142,49 +141,61 @@ def sanity_check_pairing():
     val_txt = os.path.join(splits_work_dir, "val.txt")
     test_txt = os.path.join(splits_work_dir, "test.txt")
     
-    # Copy train.txt and val.txt to working directory
+    # Collect all available image IDs
+    all_ids = []
     if os.path.exists(train_txt_src) and os.path.exists(val_txt_src):
-        print(f"   ✓ Copying splits to working directory: {splits_work_dir}")
-        shutil.copy2(train_txt_src, train_txt)
-        shutil.copy2(val_txt_src, val_txt)
-        print(f"   ✓ train.txt: {train_txt}")
-        print(f"   ✓ val.txt: {val_txt}")
+        print("   ℹ Reading train.txt and val.txt from source")
+        with open(train_txt_src, 'r') as f:
+            all_ids.extend([line.strip() for line in f if line.strip()])
+        with open(val_txt_src, 'r') as f:
+            all_ids.extend([line.strip() for line in f if line.strip()])
     elif os.path.exists(trainval_txt):
-        print("   ℹ Splitting trainval.txt -> train.txt (90%) + val.txt (10%)")
-        create_train_val_splits(trainval_txt, train_txt, val_txt, seed=seed)
+        print("   ℹ Reading trainval.txt from source")
+        with open(trainval_txt, 'r') as f:
+            all_ids = [line.strip() for line in f if line.strip()]
     else:
         raise RuntimeError("Neither (train.txt, val.txt) nor trainval.txt found in ImageSets/Main")
     
-    # Create test.txt if needed
-    if not os.path.exists(test_txt_src):
-        print(f"   ℹ test.txt not found, creating from val.txt: {val_txt}")
-        # Verify val.txt is in working directory
-        if not val_txt.startswith(splits_work_dir):
-            raise RuntimeError(f"val.txt path error: {val_txt} not in {splits_work_dir}")
-        
-        # Split val.txt into val and test
-        with open(val_txt, 'r') as f:
-            val_ids = [line.strip() for line in f if line.strip()]
-        
-        mid_point = len(val_ids) // 2
-        new_val_ids = val_ids[:mid_point]
-        test_ids = val_ids[mid_point:]
-        
-        # Write new val.txt
-        with open(val_txt, 'w') as f:
-            for img_id in new_val_ids:
-                f.write(f"{img_id}\n")
-        
-        # Write test.txt
-        with open(test_txt, 'w') as f:
-            for img_id in test_ids:
-                f.write(f"{img_id}\n")
-        
-        print(f"   ✓ Created test.txt with {len(test_ids)} samples")
-        print(f"   ✓ Updated val.txt with {len(new_val_ids)} samples")
-    else:
-        print("   ✓ Copying test.txt to working directory")
-        shutil.copy2(test_txt_src, test_txt)
+    print(f"   ℹ Total available samples: {len(all_ids)}")
+    
+    # Filter only IDs that have foggy versions
+    print("   ℹ Filtering samples with foggy images...")
+    ids_with_fog = []
+    for img_id in all_ids:
+        fog_path = resolve_image_path(voc_fog_images_path, img_id, prefer_foggy_suffix=True)
+        if fog_path is not None:
+            ids_with_fog.append(img_id)
+    
+    print(f"   ✓ Samples with foggy images: {len(ids_with_fog)}")
+    
+    # Shuffle and split 80-10-10
+    random.seed(seed)
+    random.shuffle(ids_with_fog)
+    
+    total = len(ids_with_fog)
+    train_end = int(0.8 * total)
+    val_end = int(0.9 * total)
+    
+    train_ids = ids_with_fog[:train_end]
+    val_ids = ids_with_fog[train_end:val_end]
+    test_ids = ids_with_fog[val_end:]
+    
+    # Write split files
+    with open(train_txt, 'w') as f:
+        for img_id in train_ids:
+            f.write(f"{img_id}\n")
+    
+    with open(val_txt, 'w') as f:
+        for img_id in val_ids:
+            f.write(f"{img_id}\n")
+    
+    with open(test_txt, 'w') as f:
+        for img_id in test_ids:
+            f.write(f"{img_id}\n")
+    
+    print(f"   ✓ Created train.txt: {len(train_ids)} samples ({len(train_ids)/total*100:.1f}%)")
+    print(f"   ✓ Created val.txt: {len(val_ids)} samples ({len(val_ids)/total*100:.1f}%)")
+    print(f"   ✓ Created test.txt: {len(test_ids)} samples ({len(test_ids)/total*100:.1f}%)")
     
     # Check 4: Sample pairing validation (first 30 samples with fog)
     print("✅ Check 4: Sample pairing validation...")
