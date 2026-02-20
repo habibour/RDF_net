@@ -88,11 +88,12 @@ class Backbone(nn.Module):
         )
 
     def forward(self, x, det_only=False):
-        if self.training and not det_only and self.split_paired_batch:
-            # Split hazy and clear images (each half of the batch) if paired batch is provided
-            if x.shape[0] % 2 == 0:
-                batch_size = x.shape[0] // 2
-                x, _ = x.split((batch_size, batch_size), dim=0)
+        # Disabled: batch splitting causes mismatch with clean_images in pixel loss
+        # if self.training and not det_only and self.split_paired_batch:
+        #     # Split hazy and clear images (each half of the batch) if paired batch is provided
+        #     if x.shape[0] % 2 == 0:
+        #         batch_size = x.shape[0] // 2
+        #         x, _ = x.split((batch_size, batch_size), dim=0)
         x = self.stem(x)
         x = self.dark2(x)
         f1 = x
