@@ -605,7 +605,7 @@ def main():
     
     # Set up training components
     print("\n⚙️ Setting up training components...")
-    yolo_loss = YOLOLoss(anchors, num_classes, input_shape, cuda, anchors_mask)
+    yolo_loss = YOLOLoss(anchors, num_classes, input_shape, anchors_mask)
     loss_history = LossHistory(save_dir)
     
     # Optimizer
