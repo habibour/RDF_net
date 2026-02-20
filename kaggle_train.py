@@ -619,9 +619,16 @@ def main():
     yolo_loss = YOLOLoss(anchors, num_classes, input_shape, anchors_mask)
     loss_history = LossHistory(save_dir, model, input_shape)
     
-    # Optimizer
+    # Optimizer and scaler
     optimizer = optim.SGD(model.parameters(), lr=init_lr, momentum=0.937, weight_decay=5e-4)
     lr_scheduler = get_lr_scheduler("cos", init_lr, init_lr * 0.01, epochs)
+    
+    # FP16 scaler
+    if fp16:
+        from torch.cuda.amp import GradScaler
+        scaler = GradScaler()
+    else:
+        scaler = None
     
     # Training loop
     print(f"\n🏃 Starting training for {epochs} epochs...")
@@ -633,8 +640,9 @@ def main():
         
         # Training
         fit_one_epoch(model, model, None, yolo_loss, loss_history, None, optimizer, 
-                     epoch, len(train_loader), train_loader, epochs, cuda, fp16, None,
-                     save_period=10, save_dir=save_dir, local_rank=0,
+                     epoch, len(train_loader), len(val_loader), train_loader, val_loader, 
+                     epochs, cuda, fp16, scaler,
+                     save_period=2, save_dir=save_dir, local_rank=0,
                      method_name=method_name, alpha_feat=alpha_feat, 
                      lambda_pixel=lambda_pixel, feat_warmup_epochs=feat_warmup_epochs)
         
