@@ -81,8 +81,12 @@ class EvalCallback():
         self.period             = period
         self.keep_map_out       = keep_map_out
         self.bbox_util          = DecodeBox(self.anchors, self.num_classes, (self.input_shape[0], self.input_shape[1]), self.anchors_mask)
+        
         self.maps       = [0]
         self.epoches    = [0]
+        self.best_map   = 0
+        self.best_epoch = 0
+        
         if self.eval_flag:
             with open(os.path.join(self.log_dir, "epoch_map.txt"), 'a') as f:
                 f.write(str(0))
@@ -148,8 +152,39 @@ class EvalCallback():
                 temp_map = get_coco_map(class_names = self.class_names, path = self.map_out_path)[1]
             except:
                 temp_map = get_map(self.MINOVERLAP, False, path = self.map_out_path)
+            
             self.maps.append(temp_map)
             self.epoches.append(epoch)
+            
+            # Save best model
+            if temp_map > self.best_map:
+                self.best_map = temp_map
+                self.best_epoch = epoch
+                print(f"🏆 New best mAP: {temp_map:.4f} at epoch {epoch}")
+                
+                # Save best model weights
+                best_model_path = os.path.join(self.log_dir, "best_model.pth")
+                torch.save(self.net.state_dict(), best_model_path)
+                print(f"💾 Best model saved: {best_model_path}")
+                
+                # Save best model info
+                best_info = {
+                    'epoch': epoch,
+                    'mAP': temp_map,
+                    'model_state_dict': self.net.state_dict()
+                }
+                best_info_path = os.path.join(self.log_dir, "best_model_info.pth") 
+                torch.save(best_info, best_info_path)
+                
+                # Update best model log
+                with open(os.path.join(self.log_dir, "best_model_log.txt"), 'w') as f:
+                    f.write(f"Best Model Info:\n")
+                    f.write(f"Epoch: {epoch}\n")
+                    f.write(f"mAP: {temp_map:.6f}\n")
+                    f.write(f"Saved: {best_model_path}\n")
+            else:
+                print(f"📊 Current mAP: {temp_map:.4f} (Best: {self.best_map:.4f} at epoch {self.best_epoch})")
+            
             with open(os.path.join(self.log_dir, "epoch_map.txt"), 'a') as f:
                 f.write(str(temp_map))
                 f.write("\n")

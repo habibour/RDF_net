@@ -17,6 +17,115 @@ _The architecture of the proposed RDFNet consists of several key components. Ini
 ![](https://github.com/PolarisFTL/RDFNet/blob/main/figs/result.png)
 ![](https://github.com/PolarisFTL/RDFNet/blob/main/figs/visual.png)
 
+## 🔧 VOC2007 Synthetic Fog Training (New!)
+
+### Generate Synthetic Fog Dataset
+
+Create a paired fog/clean dataset from VOC2007 for training:
+
+```bash
+python tools/make_voc2007_fog_dataset.py \
+    --voc2007_root /path/to/VOCdevkit/VOC2007 \
+    --out_root /data/VOC2007_SYNFOG \
+    --seed 42 \
+    --beta_min 0.6 \
+    --beta_max 2.2 \
+    --A_min 0.75 \
+    --A_max 1.0
+```
+
+**Parameters:**
+
+- `--voc2007_root`: Path to VOC2007 directory (must contain JPEGImages, Annotations, ImageSets)
+- `--out_root`: Output directory for synthetic fog dataset
+- `--beta_min/max`: Scattering coefficient range for fog density
+- `--A_min/max`: Atmospheric light range
+
+**Generated Structure:**
+
+```
+VOC2007_SYNFOG/
+├── VOC2007_CLEAN/
+│   ├── JPEGImages/      # Original clean images
+│   ├── Annotations/     # XML annotation files
+│   └── ImageSets/       # Train/val/test splits
+├── VOC2007_FOG/
+│   ├── JPEGImages/      # Synthetic fog images
+│   ├── Annotations/     # Same XML files as clean
+│   └── ImageSets/       # Same splits as clean
+├── README.md            # Dataset documentation
+└── fog_parameters.json  # Fog generation parameters
+```
+
+### Train on Synthetic Fog Dataset
+
+Fine-tune RDFNet from checkpoint using **feature-level dehazing supervision**:
+
+```bash
+# Edit voc2007_fog_train.py to set paths:
+dataset_root = "/data/VOC2007_SYNFOG"
+checkpoint_path = "/path/to/RDFNet.pth"
+
+# Train with feature-level supervision
+python voc2007_fog_train.py
+```
+
+**Training Method - Feature-Level Supervision:**
+
+- **Loss Formulation**: `L = L_detection + α_feat * warmup * Σ L1(F_l(restored), F_l(clean))`
+- **Feature Extraction**: Uses detector backbone features (P3/P4/P5 levels)
+- **Supervision Strategy**: Matches features between restored and clean images
+- **Warmup Schedule**: Gradual feature loss introduction over first N epochs
+- **Advantages**: More robust than pixel-level supervision, focuses on detection-relevant features
+
+**Key Parameters:**
+
+```python
+alpha_feat = 0.5        # Feature loss weight
+feat_warmup_epochs = 10 # Warmup period for gradual feature loss introduction
+training_epochs = 80    # Total fine-tuning epochs
+```
+
+### Expected Folder Structure
+
+For Kaggle or local training:
+
+```
+workspace/
+├── RDF_net/                    # This repository
+├── VOC2007_SYNFOG/            # Generated dataset
+│   ├── VOC2007_CLEAN/
+│   └── VOC2007_FOG/
+└── checkpoints/
+    └── RDFNet.pth             # Pre-trained checkpoint
+```
+
+### Example Commands
+
+Complete workflow from VOC2007:
+
+```bash
+# 1. Generate synthetic fog dataset
+python tools/make_voc2007_fog_dataset.py \
+    --voc2007_root /data/VOCdevkit/VOC2007 \
+    --out_root /data/VOC2007_SYNFOG
+
+# 2. Train with feature-level supervision (80 epochs)
+# Edit voc2007_fog_train.py to set dataset_root and checkpoint_path
+python voc2007_fog_train.py
+
+# 3. Check results in experiment_summary_feature_supervision.json
+```
+
+### Output Files
+
+Training generates:
+
+- `logs/loss_ours_feature_<timestamp>/`: TensorBoard logs and evaluation results
+- `logs/ep*-ours_feature.pth`: Checkpoint files every 2 epochs
+- `logs/best_model.pth`: Best model based on validation mAP
+- `experiment_summary_feature_supervision.json`: Training summary and final metrics
+
 #### 📢News
 
 <ul>

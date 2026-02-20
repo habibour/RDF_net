@@ -1,0 +1,69 @@
+2026-02-20 09:26:44,296 - INFO - === Fog Application Started ===
+2026-02-20 09:26:44,296 - INFO - Clean images directory: /Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/training_voc_2012/VOC2012_clean
+2026-02-20 09:26:44,296 - INFO - Foggy images directory: /Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/training_voc_2012/VOC2012_FOGGY
+2026-02-20 09:26:44,296 - INFO - Backup directory: /Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC_FOG_12K_Upload/VOC2012_CLEAN_BACKUP
+2026-02-20 09:26:44,296 - INFO - Fog density: medium
+2026-02-20 09:26:44,301 - INFO - Backup directory ready: /Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC_FOG_12K_Upload/VOC2012_CLEAN_BACKUP
+2026-02-20 09:26:44,305 - INFO - Processing limited sample: 5 images
+2026-02-20 09:26:44,305 - INFO - Found 5 images to process
+2026-02-20 09:26:44,305 - INFO - Backing up original clean images...
+2026-02-20 09:26:50,032 - INFO - Backed up 12000 images to /Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/VOC_FOG_12K_Upload/VOC2012_CLEAN_BACKUP
+2026-02-20 09:26:50,916 - INFO - === Processing Complete ===
+2026-02-20 09:26:50,916 - INFO - Total images: 5
+2026-02-20 09:26:50,916 - INFO - Successfully processed: 5
+2026-02-20 09:26:50,916 - INFO - Skipped: 0
+2026-02-20 09:26:50,916 - INFO - Errors: 0
+2026-02-20 09:26:50,916 - INFO - Metadata saved to: fog_application_metadata.json
+2026-02-20 09:26:50,917 - INFO - Average fog parameters:
+2026-02-20 09:26:50,917 - INFO -   Beta (scattering): 1.033
+2026-02-20 09:26:50,917 - INFO -   Atmospheric light: 0.869
+2026-02-20 09:26:50,917 - INFO -   Transmission: 0.125
+2026-02-20 09:28:28,810 - INFO - === Fog Application Started ===
+2026-02-20 09:28:28,810 - INFO - Clean images directory: /Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/training_voc_2012/VOC2012_clean
+2026-02-20 09:28:28,810 - INFO - Foggy images directory: /Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/training_voc_2012/VOC2012_FOGGY
+2026-02-20 09:28:28,810 - INFO - Backup directory: None
+2026-02-20 09:28:28,810 - INFO - Fog density: medium
+2026-02-20 09:28:28,819 - INFO - Found 12000 images to process
+2026-02-20 09:29:55,438 - INFO - === Processing Complete ===
+2026-02-20 09:29:55,438 - INFO - Total images: 12000
+2026-02-20 09:29:55,438 - INFO - Successfully processed: 12000
+2026-02-20 09:29:55,438 - INFO - Skipped: 0
+2026-02-20 09:29:55,438 - INFO - Errors: 0
+2026-02-20 09:29:55,499 - INFO - Metadata saved to: fog_application_metadata.json
+2026-02-20 09:29:55,500 - INFO - Average fog parameters:
+2026-02-20 09:29:55,500 - INFO -   Beta (scattering): 1.001
+2026-02-20 09:29:55,500 - INFO -   Atmospheric light: 0.850
+2026-02-20 09:29:55,500 - INFO -   Transmission: 0.114
+2026-02-20 09:45:40,578 - INFO - === Fog Application Started ===
+2026-02-20 09:45:40,578 - INFO - Clean images directory: /Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/training_voc_2012/VOC2012_clean
+2026-02-20 09:45:40,578 - INFO - Foggy images directory: /Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/training_voc_2012/VOC2012_FOGGY
+2026-02-20 09:45:40,578 - INFO - Backup directory: None
+2026-02-20 09:45:40,578 - INFO - Fog density: light
+2026-02-20 09:45:40,587 - INFO - Processing limited sample: 3 images
+2026-02-20 09:45:40,587 - INFO - Found 3 images to process
+2026-02-20 09:45:40,677 - INFO - === Processing Complete ===
+2026-02-20 09:45:40,677 - INFO - Total images: 3
+2026-02-20 09:45:40,677 - INFO - Successfully processed: 3
+2026-02-20 09:45:40,677 - INFO - Skipped: 0
+2026-02-20 09:45:40,677 - INFO - Errors: 0
+2026-02-20 09:45:40,677 - INFO - Metadata saved to: fog_application_metadata.json
+2026-02-20 09:45:40,677 - INFO - Average fog parameters:
+2026-02-20 09:45:40,677 - INFO -   Beta (scattering): 0.100
+2026-02-20 09:45:40,677 - INFO -   Atmospheric light: 0.694
+2026-02-20 09:45:40,677 - INFO -   Transmission: 0.551
+2026-02-20 09:46:31,378 - INFO - === Fog Application Started ===
+2026-02-20 09:46:31,378 - INFO - Clean images directory: /Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/training_voc_2012/VOC2012_clean
+2026-02-20 09:46:31,378 - INFO - Foggy images directory: /Users/habibourakash/CSERUET/4-2/CSE4200-theisis/object_detection/training_voc_2012/VOC2012_FOGGY
+2026-02-20 09:46:31,378 - INFO - Backup directory: None
+2026-02-20 09:46:31,378 - INFO - Fog density: light
+2026-02-20 09:46:31,387 - INFO - Found 12000 images to process
+2026-02-20 09:47:46,609 - INFO - === Processing Complete ===
+2026-02-20 09:47:46,609 - INFO - Total images: 12000
+2026-02-20 09:47:46,609 - INFO - Successfully processed: 12000
+2026-02-20 09:47:46,609 - INFO - Skipped: 0
+2026-02-20 09:47:46,609 - INFO - Errors: 0
+2026-02-20 09:47:46,671 - INFO - Metadata saved to: fog_application_metadata.json
+2026-02-20 09:47:46,673 - INFO - Average fog parameters:
+2026-02-20 09:47:46,673 - INFO -   Beta (scattering): 0.105
+2026-02-20 09:47:46,673 - INFO -   Atmospheric light: 0.700
+2026-02-20 09:47:46,673 - INFO -   Transmission: 0.526

@@ -10,6 +10,9 @@ This guide helps you run RDFNet training on Kaggle with the VOC_FOG_12K dataset.
 !git clone https://github.com/habibour/RDF_net.git
 %cd RDF_net
 
+# Run diagnostic to check setup
+!python kaggle_diagnostic.py
+
 # Write voc_classes.txt
 voc_classes = """aeroplane
 bicycle
@@ -49,8 +52,32 @@ DATASET_ROOT = "/kaggle/working"
 # Generate dataset splits
 !python tools/make_vocfog_split.py --dataset_root "{DATASET_ROOT}/VOC_FOG_12K_Upload" --seed 42
 
-# Fix dataset splits path (if training fails with FileNotFoundError)
-!python fix_dataset_splits.py
+# Fix dataset splits path (handles read-only filesystem issues)
+import os
+import shutil
+
+def fix_dataset_splits():
+    source_splits = "/kaggle/working/dataset_splits/ImageSets/Main"
+    target_splits = "/kaggle/working/ImageSets/Main"
+
+    if os.path.exists(source_splits):
+        os.makedirs(target_splits, exist_ok=True)
+
+        split_files = ["train.txt", "val.txt", "test.txt"]
+        for split_file in split_files:
+            source_file = os.path.join(source_splits, split_file)
+            target_file = os.path.join(target_splits, split_file)
+
+            if os.path.exists(source_file):
+                shutil.copy2(source_file, target_file)
+                with open(target_file, 'r') as f:
+                    count = len(f.readlines())
+                print(f"✅ Copied {split_file}: {count} samples")
+        print("🎯 Dataset splits ready for training!")
+    else:
+        print("❌ Run make_vocfog_split.py first!")
+
+fix_dataset_splits()
 
 # Update kaggle_train.py with your paths
 import re
