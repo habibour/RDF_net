@@ -606,7 +606,7 @@ def main():
     # Set up training components
     print("\n⚙️ Setting up training components...")
     yolo_loss = YOLOLoss(anchors, num_classes, input_shape, anchors_mask)
-    loss_history = LossHistory(save_dir)
+    loss_history = LossHistory(save_dir, model, input_shape)
     
     # Optimizer
     optimizer = optim.SGD(model.parameters(), lr=init_lr, momentum=0.937, weight_decay=5e-4)
