@@ -396,27 +396,45 @@ def load_checkpoint_with_validation(model, checkpoint_path):
         else:
             state_dict = checkpoint
         
+        # Filter out YOLO head layers that don't match (different num_classes)
+        # RTTS checkpoint has 10 classes, VOC has 20 classes
+        model_state = model.state_dict()
+        filtered_state_dict = {}
+        skipped_keys = []
+        
+        for k, v in state_dict.items():
+            if k in model_state:
+                if v.shape == model_state[k].shape:
+                    filtered_state_dict[k] = v
+                else:
+                    skipped_keys.append(f"{k}: checkpoint {v.shape} vs model {model_state[k].shape}")
+            else:
+                skipped_keys.append(f"{k}: not in model")
+        
+        if skipped_keys:
+            print(f"   ℹ Skipping {len(skipped_keys)} mismatched layers (YOLO heads for different num_classes)")
+            if len(skipped_keys) <= 10:
+                for sk in skipped_keys:
+                    print(f"     - {sk}")
+        
         # Load with strict=False to handle partial matching
-        missing_keys, unexpected_keys = model.load_state_dict(state_dict, strict=False)
+        missing_keys, unexpected_keys = model.load_state_dict(filtered_state_dict, strict=False)
         
         total_keys = len(state_dict)
-        loaded_keys = total_keys - len(missing_keys)
+        loaded_keys = len(filtered_state_dict)
         missing_count = len(missing_keys)
-        unexpected_count = len(unexpected_keys)
         
-        print(f"   ✓ Total keys: {total_keys}")
+        print(f"   ✓ Total checkpoint keys: {total_keys}")
         print(f"   ✓ Loaded keys: {loaded_keys}")
-        print(f"   ✓ Missing keys: {missing_count}")
-        print(f"   ✓ Unexpected keys: {unexpected_count}")
+        print(f"   ✓ Skipped keys: {len(skipped_keys)}")
+        print(f"   ✓ Missing keys in model: {missing_count}")
         
-        # Validate loading success
-        if missing_count > 0.25 * total_keys:
-            raise RuntimeError(f"Too many missing keys: {missing_count}/{total_keys} (>25%)")
+        # Validate loading success - be more lenient since we're skipping YOLO heads
+        if loaded_keys < 0.5 * total_keys:
+            raise RuntimeError(f"Too few keys loaded: {loaded_keys}/{total_keys} (<50%)")
         
-        if missing_count > 0:
-            print(f"   ⚠ First few missing keys: {list(missing_keys)[:5]}")
-        
-        print("   ✅ Checkpoint loaded successfully")
+        print("   ✅ Checkpoint loaded successfully (backbone + feature extractor)")
+        print("   ℹ YOLO heads initialized randomly for VOC 20 classes")
         return model
         
     except Exception as e:
