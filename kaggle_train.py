@@ -580,7 +580,7 @@ def main():
     
     # Load model
     print("\n🏗 Building model...")
-    anchors = get_anchors(anchors_path)
+    anchors, num_anchors = get_anchors(anchors_path)
     num_classes = len(VOC_CLASSES)
     
     model = YoloBody(anchors_mask, num_classes)
