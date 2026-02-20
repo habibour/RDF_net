@@ -30,7 +30,7 @@ def fit_one_epoch(model_train, model, ema, yolo_loss, loss_history, eval_callbac
         print(f"   Lambda pixel: {lambda_pixel}")
         print(f"   Feat warmup epochs: {feat_warmup_epochs}")
         print('Start Train')
-        pbar = tqdm(total=epoch_step,desc=f'Epoch {epoch + 1}/{Epoch}',postfix=dict,mininterval=0.3)
+        pbar = tqdm(total=epoch_step,desc=f'Epoch {epoch + 1}/{Epoch}',postfix=dict,mininterval=2.0,miniters=50)
     
     model_train.train()
     for iteration, batch in enumerate(gen):
@@ -235,7 +235,7 @@ def fit_one_epoch(model_train, model, ema, yolo_loss, loss_history, eval_callbac
         pbar.close()
         print('Finish Train')
         print('Start Validation')
-        pbar = tqdm(total=epoch_step_val, desc=f'Epoch {epoch + 1}/{Epoch}',postfix=dict,mininterval=0.3)
+        pbar = tqdm(total=epoch_step_val, desc=f'Epoch {epoch + 1}/{Epoch}',postfix=dict,mininterval=2.0,miniters=20)
 
     model_train.eval()
     for iteration, batch in enumerate(gen_val):
