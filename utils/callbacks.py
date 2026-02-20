@@ -18,7 +18,7 @@ class LossHistory():
     def __init__(self, log_dir, model, input_shape):
         self.log_dir    = log_dir
         self.losses     = []
-        os.makedirs(self.log_dir)
+        os.makedirs(self.log_dir, exist_ok=True)
         self.writer     = SummaryWriter(self.log_dir)
         try:
             dummy_input     = torch.randn(2, 3, input_shape[0], input_shape[1])
