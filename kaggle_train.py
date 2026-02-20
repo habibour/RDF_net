@@ -129,20 +129,33 @@ def sanity_check_pairing():
     
     # Check 3: Build/validate train/val/test splits
     print("✅ Check 3: Train/val/test splits...")
-    train_txt = os.path.join(sets_main, "train.txt")
-    val_txt = os.path.join(sets_main, "val.txt")
-    test_txt = os.path.join(sets_main, "test.txt")
+    train_txt_src = os.path.join(sets_main, "train.txt")
+    val_txt_src = os.path.join(sets_main, "val.txt")
+    test_txt_src = os.path.join(sets_main, "test.txt")
     trainval_txt = os.path.join(sets_main, "trainval.txt")
     
-    if os.path.exists(train_txt) and os.path.exists(val_txt):
-        print("   ✓ Using existing train.txt and val.txt")
+    # Create working directory for splits (Kaggle input is read-only)
+    splits_work_dir = os.path.join(save_dir, "splits")
+    os.makedirs(splits_work_dir, exist_ok=True)
+    
+    train_txt = os.path.join(splits_work_dir, "train.txt")
+    val_txt = os.path.join(splits_work_dir, "val.txt")
+    test_txt = os.path.join(splits_work_dir, "test.txt")
+    
+    # Copy train.txt and val.txt to working directory
+    if os.path.exists(train_txt_src) and os.path.exists(val_txt_src):
+        print("   ✓ Copying train.txt and val.txt to working directory")
+        import shutil
+        shutil.copy2(train_txt_src, train_txt)
+        shutil.copy2(val_txt_src, val_txt)
     elif os.path.exists(trainval_txt):
         print("   ℹ Splitting trainval.txt -> train.txt (90%) + val.txt (10%)")
         create_train_val_splits(trainval_txt, train_txt, val_txt, seed=seed)
     else:
         raise RuntimeError("Neither (train.txt, val.txt) nor trainval.txt found in ImageSets/Main")
     
-    if not os.path.exists(test_txt):
+    # Create test.txt if needed
+    if not os.path.exists(test_txt_src):
         print("   ℹ test.txt not found, creating from val.txt (50% split)")
         # Split val.txt into val and test
         with open(val_txt, 'r') as f:
@@ -164,6 +177,10 @@ def sanity_check_pairing():
         
         print(f"   ✓ Created test.txt with {len(test_ids)} samples")
         print(f"   ✓ Updated val.txt with {len(new_val_ids)} samples")
+    else:
+        print("   ✓ Copying test.txt to working directory")
+        import shutil
+        shutil.copy2(test_txt_src, test_txt)
     
     # Check 4: Sample pairing validation (first 30 samples with fog)
     print("✅ Check 4: Sample pairing validation...")
