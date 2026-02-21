@@ -31,8 +31,7 @@ class LossHistory():
         self.losses.append(loss)
 
         with open(os.path.join(self.log_dir, "epoch_loss.txt"), 'a') as f:
-            f.write(str(loss))
-            f.write("\n")
+            f.write(f"epoch_{epoch}: {loss}\n")
         
         self.writer.add_scalar('loss', loss, epoch)
         self.loss_plot()

@@ -630,12 +630,25 @@ def main():
     else:
         scaler = None
     
+    # Check for resumption
+    start_epoch = 0
+    last_epoch_file = os.path.join(save_dir, 'last_epoch.txt')
+    if os.path.exists(last_epoch_file):
+        with open(last_epoch_file, 'r') as f:
+            try:
+                start_epoch = int(f.readline().strip())
+                checkpoint_line = f.readline().strip()
+                print(f"\n🔄 Found checkpoint: {checkpoint_line}")
+                print(f"   Resuming from epoch {start_epoch}...")
+            except:
+                start_epoch = 0
+    
     # Training loop
-    print(f"\n🏃 Starting training for {epochs} epochs...")
+    print(f"\n🏃 Starting training for {epochs} epochs (starting from epoch {start_epoch})...")
     best_map = 0
     best_epoch = 0
     
-    for epoch in range(epochs):
+    for epoch in range(start_epoch, epochs):
         print(f"\n--- Epoch {epoch+1}/{epochs} ---")
         
         # Training

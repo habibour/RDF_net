@@ -299,13 +299,33 @@ def fit_one_epoch(model_train, model, ema, yolo_loss, loss_history, eval_callbac
             save_state_dict = ema.ema.state_dict()
         else:
             save_state_dict = model.state_dict()
+        
+        # Create checkpoint with full training state
+        checkpoint = {
+            'epoch': epoch + 1,
+            'model_state_dict': save_state_dict,
+            'optimizer_state_dict': optimizer.state_dict(),
+            'loss': loss_total_sum / epoch_step,
+            'loss_det': loss_det_sum / epoch_step,
+            'loss_pixel': loss_pixel_sum / epoch_step,
+            'loss_feat': loss_feat_sum / epoch_step,
+        }
             
         if (epoch + 1) % save_period == 0 or epoch + 1 == Epoch:
             save_path = os.path.join(save_dir, f"ep{epoch + 1:03d}-loss{loss_total_sum / epoch_step:.3f}.pth")
-            torch.save(save_state_dict, save_path)
+            torch.save(checkpoint, save_path)
+            # Also save just the epoch number for easy resumption
+            with open(os.path.join(save_dir, 'last_epoch.txt'), 'w') as f:
+                f.write(f"{epoch + 1}\n")
+                f.write(f"checkpoint: {save_path}\n")
+            print(f"💾 Saved checkpoint: {save_path}")
             
         if loss_total_sum / epoch_step <= min(loss_history.losses):
             print('Save best model to best_epoch_weights.pth')
-            torch.save(save_state_dict, os.path.join(save_dir, "best_epoch_weights.pth"))
+            best_path = os.path.join(save_dir, "best_epoch_weights.pth")
+            torch.save(checkpoint, best_path)
+            with open(os.path.join(save_dir, 'best_epoch.txt'), 'w') as f:
+                f.write(f"epoch: {epoch + 1}\n")
+                f.write(f"loss: {loss_total_sum / epoch_step:.6f}\n")
             
         torch.save(save_state_dict, os.path.join(save_dir, "last_epoch_weights.pth"))
