@@ -460,7 +460,7 @@ def validate_rtts_isolation(train_lines, val_lines):
             if "RTTS" in line or rtts_root in line:
                 raise RuntimeError(f"RTTS path found in {split_name} split - RTTS is test-only!")
 
-def evaluate_dual_datasets(model, anchors, class_names, input_shape, 
+def evaluate_dual_datasets(model, anchors, anchors_mask, class_names, num_classes, input_shape, 
                           voc_test_lines, rtts_test_lines, cuda, save_dir):
     """
     Evaluate on both VOC fog test and RTTS test datasets.
@@ -476,7 +476,7 @@ def evaluate_dual_datasets(model, anchors, class_names, input_shape,
         os.makedirs(voc_eval_dir, exist_ok=True)
         
         # Create temporary eval callback for VOC
-        voc_eval = EvalCallback(model, input_shape, anchors, class_names, 
+        voc_eval = EvalCallback(model, input_shape, anchors, anchors_mask, class_names, num_classes,
                                val_lines=voc_test_lines, log_dir=voc_eval_dir, cuda=cuda)
         voc_map = voc_eval.on_epoch_end(0)  # Run evaluation
         results['voc_fog_test_map'] = voc_map
@@ -489,7 +489,7 @@ def evaluate_dual_datasets(model, anchors, class_names, input_shape,
         os.makedirs(rtts_eval_dir, exist_ok=True)
         
         # Create temporary eval callback for RTTS
-        rtts_eval = EvalCallback(model, input_shape, anchors, class_names,
+        rtts_eval = EvalCallback(model, input_shape, anchors, anchors_mask, class_names, num_classes,
                                 val_lines=rtts_test_lines, log_dir=rtts_eval_dir, cuda=cuda)
         rtts_map = rtts_eval.on_epoch_end(0)  # Run evaluation
         results['rtts_test_map'] = rtts_map
@@ -652,7 +652,7 @@ def main():
         # Evaluation (every 10 epochs)
         if (epoch + 1) % 10 == 0:
             print(f"📊 Running evaluation at epoch {epoch+1}...")
-            results = evaluate_dual_datasets(model, anchors, VOC_CLASSES, input_shape,
+            results = evaluate_dual_datasets(model, anchors, anchors_mask, VOC_CLASSES, num_classes, input_shape,
                                             test_lines, rtts_lines, cuda, save_dir)
             
             current_map = results.get('voc_fog_test_map', 0)
