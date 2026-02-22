@@ -315,17 +315,29 @@ def fit_one_epoch(model_train, model, ema, yolo_loss, loss_history, eval_callbac
             save_path = os.path.join(save_dir, f"ep{epoch + 1:03d}-loss{loss_total_sum / epoch_step:.3f}.pth")
             torch.save(checkpoint, save_path)
             # Also save just the epoch number for easy resumption
-            with open(os.path.join(save_dir, 'last_epoch.txt'), 'w') as f:
+            last_epoch_file = os.path.join(save_dir, 'last_epoch.txt')
+            with open(last_epoch_file, 'w') as f:
                 f.write(f"{epoch + 1}\n")
                 f.write(f"checkpoint: {save_path}\n")
             print(f"💾 Saved checkpoint: {save_path}")
+            print(f"📄 Epoch tracking saved to: {last_epoch_file}")
             
         if loss_total_sum / epoch_step <= min(loss_history.losses):
             print('Save best model to best_epoch_weights.pth')
             best_path = os.path.join(save_dir, "best_epoch_weights.pth")
             torch.save(checkpoint, best_path)
-            with open(os.path.join(save_dir, 'best_epoch.txt'), 'w') as f:
+            best_epoch_file = os.path.join(save_dir, 'best_epoch.txt')
+            with open(best_epoch_file, 'w') as f:
                 f.write(f"epoch: {epoch + 1}\n")
                 f.write(f"loss: {loss_total_sum / epoch_step:.6f}\n")
+            print(f"🏆 Best epoch info saved to: {best_epoch_file}")
+        
+        # Print log file locations at end of epoch
+        if local_rank == 0 and ((epoch + 1) % save_period == 0 or epoch + 1 == Epoch):
+            print(f"\n📊 Training logs available in: {save_dir}")
+            print(f"   - Checkpoints: ep{epoch + 1:03d}-loss*.pth")
+            print(f"   - Epoch tracker: last_epoch.txt")
+            print(f"   - Loss history: epoch_loss.txt")
+            print(f"   - Best model: best_epoch_weights.pth (if applicable)")
             
         torch.save(save_state_dict, os.path.join(save_dir, "last_epoch_weights.pth"))
