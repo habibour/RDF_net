@@ -478,7 +478,7 @@ def evaluate_dual_datasets(model, anchors, anchors_mask, class_names, num_classe
         # Create temporary eval callback for VOC
         voc_eval = EvalCallback(model, input_shape, anchors, anchors_mask, class_names, num_classes,
                                val_lines=voc_test_lines, log_dir=voc_eval_dir, cuda=cuda)
-        voc_map = voc_eval.on_epoch_end(0)  # Run evaluation
+        voc_map = voc_eval.on_epoch_end(0, model)  # Run evaluation
         results['voc_fog_test_map'] = voc_map
         print(f"   ✓ VOC fog test mAP: {voc_map:.4f}")
     
@@ -491,7 +491,7 @@ def evaluate_dual_datasets(model, anchors, anchors_mask, class_names, num_classe
         # Create temporary eval callback for RTTS
         rtts_eval = EvalCallback(model, input_shape, anchors, anchors_mask, class_names, num_classes,
                                 val_lines=rtts_test_lines, log_dir=rtts_eval_dir, cuda=cuda)
-        rtts_map = rtts_eval.on_epoch_end(0)  # Run evaluation
+        rtts_map = rtts_eval.on_epoch_end(0, model)  # Run evaluation
         results['rtts_test_map'] = rtts_map
         print(f"   ✓ RTTS test mAP: {rtts_map:.4f}")
     
